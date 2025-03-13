@@ -19,6 +19,10 @@ public partial class Doctor
 
     public DateTime? UpdatedAt { get; set; }
 
+    public string Login { get; set; } = null!;
+
+    public string Password { get; set; } = null!;
+
     public virtual ICollection<Notification> Notifications { get; set; } = new List<Notification>();
 
     public virtual ICollection<Review> Reviews { get; set; } = new List<Review>();

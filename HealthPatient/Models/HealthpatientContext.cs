@@ -17,6 +17,8 @@ public partial class HealthpatientContext : DbContext
 
     public virtual DbSet<Achievement> Achievements { get; set; }
 
+    public virtual DbSet<Administrator> Administrators { get; set; }
+
     public virtual DbSet<Doctor> Doctors { get; set; }
 
     public virtual DbSet<DoctorAchievement> DoctorAchievements { get; set; }
@@ -68,6 +70,32 @@ public partial class HealthpatientContext : DbContext
                 .HasColumnName("name");
         });
 
+        modelBuilder.Entity<Administrator>(entity =>
+        {
+            entity.HasKey(e => e.AdministratorId).HasName("administrators_pkey");
+
+            entity.ToTable("administrators");
+
+            entity.Property(e => e.AdministratorId).HasColumnName("administrator_id");
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("now()")
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("created_at");
+            entity.Property(e => e.FirstName)
+                .HasMaxLength(50)
+                .HasColumnName("first_name");
+            entity.Property(e => e.LastName)
+                .HasMaxLength(50)
+                .HasColumnName("last_name");
+            entity.Property(e => e.Patronymic)
+                .HasMaxLength(50)
+                .HasColumnName("patronymic");
+            entity.Property(e => e.UpdatedAt)
+                .HasDefaultValueSql("now()")
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("updated_at");
+        });
+
         modelBuilder.Entity<Doctor>(entity =>
         {
             entity.HasKey(e => e.DoctorId).HasName("doctors_pkey");
@@ -86,6 +114,12 @@ public partial class HealthpatientContext : DbContext
             entity.Property(e => e.LastName)
                 .HasMaxLength(50)
                 .HasColumnName("last_name");
+            entity.Property(e => e.Login)
+                .HasMaxLength(100)
+                .HasColumnName("login");
+            entity.Property(e => e.Password)
+                .HasMaxLength(100)
+                .HasColumnName("password");
             entity.Property(e => e.Patronymic)
                 .HasMaxLength(50)
                 .HasColumnName("patronymic");
@@ -217,10 +251,16 @@ public partial class HealthpatientContext : DbContext
             entity.Property(e => e.LastName)
                 .HasMaxLength(50)
                 .HasColumnName("last_name");
+            entity.Property(e => e.Login)
+                .HasMaxLength(100)
+                .HasColumnName("login");
             entity.Property(e => e.LoyaltyPoints)
                 .HasDefaultValue(0)
                 .HasColumnName("loyalty_points");
             entity.Property(e => e.MedicalNotes).HasColumnName("medical_notes");
+            entity.Property(e => e.Password)
+                .HasMaxLength(100)
+                .HasColumnName("password");
             entity.Property(e => e.Patronymic)
                 .HasMaxLength(50)
                 .HasColumnName("patronymic");

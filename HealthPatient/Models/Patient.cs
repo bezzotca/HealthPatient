@@ -27,6 +27,10 @@ public partial class Patient
 
     public DateTime? UpdatedAt { get; set; }
 
+    public string Login { get; set; } = null!;
+
+    public string Password { get; set; } = null!;
+
     public virtual ICollection<LoyaltyPointsHistory> LoyaltyPointsHistories { get; set; } = new List<LoyaltyPointsHistory>();
 
     public virtual ICollection<Notification> Notifications { get; set; } = new List<Notification>();
