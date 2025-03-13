@@ -6,11 +6,11 @@ namespace HealthPatient.ViewModels
     {
         [ObservableProperty] ViewModelBase pageSwitcher;
 
-        public MainWindowViewModel Instance { get; set; }
+        public static MainWindowViewModel Instance { get; set; }
         public MainWindowViewModel() 
         {
             Instance = this;
-            PageSwitcher = new LoginViewModel();
+            PageSwitcher = new SplashScreenViewModel();
         }
     }
 }
