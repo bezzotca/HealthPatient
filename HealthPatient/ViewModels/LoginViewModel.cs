@@ -79,9 +79,7 @@ namespace HealthPatient.ViewModels
                     (150 - formattedText.Height)/2   // Длина
                 );
 
-
                 context.DrawText(formattedText, textPosition);
-
 
                 var random = new Random();
                 int numberOfLines = random.Next(98, 100);
@@ -132,15 +130,23 @@ namespace HealthPatient.ViewModels
                 {
                     if(Db.Administrators.FirstOrDefault(x => x.Login == Login && x.Password == Password) != null)
                     {
+                        MainWindowViewModel.Instance.Admin = Db.Administrators.FirstOrDefault(x => x.Login == Login && x.Password == Password);
                         MainWindowViewModel.Instance.PageSwitcher = new AdminMainViewModel();
                     }
                     else if(Db.Doctors.FirstOrDefault(x => x.Login == Login && x.Password == Password) != null)
                     {
+                        MainWindowViewModel.Instance.Doctor = Db.Doctors.FirstOrDefault(x => x.Login == Login && x.Password == Password);
                         MainWindowViewModel.Instance.PageSwitcher = new DoctorsMainViewModel();
                     }
                     else if(Db.Patients.FirstOrDefault(x => x.Login == Login && x.Password == Password) != null)
                     {
+                        MainWindowViewModel.Instance.Patient = Db.Patients.FirstOrDefault(x => x.Login == Login && x.Password == Password);
                         MainWindowViewModel.Instance.PageSwitcher = new PatientsMainViewModel();
+                    }
+                    else
+                    {
+                        ResultOutputMessage = "Неверные данные";
+                        MsgColor = "#FF2400";
                     }
                 }
             }    

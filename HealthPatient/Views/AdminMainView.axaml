@@ -3,8 +3,76 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
              x:Class="HealthPatient.Views.AdminMainView"
-			  x:DataType="vm:AdminMainViewModel">
-  Welcome to Avalonia!
+			 x:DataType="vm:AdminMainViewModel">
+	<SplitView IsPaneOpen ="True" DisplayMode="Overlay" >
+		<SplitView.Pane >
+			<StackPanel Background="#423189">
+				<StackPanel Spacing="40"
+					HorizontalAlignment="Center">
+					<TextBlock Text="Панель администратора"
+							   FontWeight="Bold"
+							   FontFamily="Times New Roman"
+							   FontSize="24"
+							   Foreground="White"
+							   Margin="0,20,20,20"
+							   HorizontalAlignment="Center"/>
+				</StackPanel>
+				<Border BorderBrush="#3e0b74" BorderThickness="0,4,0,0">
+					<StackPanel Spacing="70"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								Margin="0,70">
+						<Button Content="Администраторы"
+						Width="200"
+						HorizontalContentAlignment="Center"
+						Foreground="White"
+						Background="Transparent"
+						FontWeight="Normal"
+						FontSize="20"
+								/>
+						<Button Content="Врачи"
+								Width="200"
+								HorizontalContentAlignment="Center"
+								Foreground="White"
+								Background="Transparent"
+								FontWeight="Normal"
+								FontSize="20"
+							/>
+						<Button Content="Пациенты"
+								Width="200"
+								HorizontalContentAlignment="Center"
+								Foreground="White"
+								Background="Transparent"
+								FontWeight="Normal"
+								FontSize="20"
+							/>
+						<Button Content="Приёмы"
+								Width="200"
+								HorizontalContentAlignment="Center"
+								Foreground="White"
+								Background="Transparent"
+								FontWeight="Normal"
+								FontSize="20"
+							/>
+						<Button Content="Отзывы"
+								Width="200"
+								HorizontalContentAlignment="Center"
+								Foreground="White"
+								Background="Transparent"
+								FontSize="20"/>
+						<Button Content="Лояльность"
+								Width="200"
+								HorizontalContentAlignment="Center"
+								Foreground="White"
+								Background="Transparent"
+								FontSize="20"/>
+					</StackPanel>
+				</Border>
+			</StackPanel>
+		</SplitView.Pane>
+		<TextBlock Text="12345" HorizontalAlignment="Center"/>
+	</SplitView>
+	
 </UserControl>
