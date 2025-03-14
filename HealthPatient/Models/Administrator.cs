@@ -16,4 +16,8 @@ public partial class Administrator
     public DateTime? CreatedAt { get; set; }
 
     public DateTime? UpdatedAt { get; set; }
+
+    public string Login { get; set; } = null!;
+
+    public string Password { get; set; } = null!;
 }

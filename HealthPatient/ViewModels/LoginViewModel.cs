@@ -18,8 +18,15 @@ namespace HealthPatient.ViewModels
         [ObservableProperty] private Bitmap captchaImage;
         [ObservableProperty] private string userInput;
         [ObservableProperty] private string resultMessage;
+        [ObservableProperty] private string resultOutputMessage;
+        [ObservableProperty] private string msgColor;
+        [ObservableProperty] private string login;
+        [ObservableProperty] private string password;
 
-
+        public LoginViewModel()
+        {
+            GenerateCaptcha();
+        }
         [RelayCommand]
         private void GenerateCaptcha()
         {
@@ -104,6 +111,39 @@ namespace HealthPatient.ViewModels
                 }
             }
             return renderTarget;
+        }
+
+        public void ValidateAndEnter()
+        {
+            ValidateCaptcha();
+            if(ResultMessage == "Капча не пройдена!")
+            {
+                ResultOutputMessage = "Капча не пройдена!";
+                MsgColor = "#FF2400";
+            }
+            else if(ResultMessage == "Капча пройдена!")
+            {
+                if(Login == "" || Password == "")
+                {
+                    ResultOutputMessage = "Не все поля заполнены";
+                    MsgColor = "#FF2400";
+                }
+                else if(Login != "" && Password != "")
+                {
+                    if(Db.Administrators.FirstOrDefault(x => x.Login == Login && x.Password == Password) != null)
+                    {
+                        MainWindowViewModel.Instance.PageSwitcher = new AdminMainViewModel();
+                    }
+                    else if(Db.Doctors.FirstOrDefault(x => x.Login == Login && x.Password == Password) != null)
+                    {
+                        MainWindowViewModel.Instance.PageSwitcher = new DoctorsMainViewModel();
+                    }
+                    else if(Db.Patients.FirstOrDefault(x => x.Login == Login && x.Password == Password) != null)
+                    {
+                        MainWindowViewModel.Instance.PageSwitcher = new PatientsMainViewModel();
+                    }
+                }
+            }    
         }
     }
 }

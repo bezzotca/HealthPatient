@@ -3,8 +3,61 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
              x:Class="HealthPatient.Views.LoginView"
-			 x:DataType="vm:LoginViewModel">
-  QQQQ
+			 x:DataType="vm:LoginViewModel"
+			 Background="#f3c4ed">
+	<Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+		<Border BorderBrush="Black"
+				BorderThickness="2"
+				VerticalAlignment="Center"
+				HorizontalAlignment="Center"
+				Background="White"
+				CornerRadius="15"
+				Width="250"
+				Height="500">
+			<StackPanel Margin="20"
+						Spacing="10">
+				<TextBlock Text="Авторизация"
+						   HorizontalAlignment="Center"
+						   FontFamily="Times New Roman"
+						   FontSize="30"
+						   FontWeight="Bold"/>
+				<TextBlock Text="Логин"
+						   FontFamily="Times New Roman"
+						   FontSize="18"
+						   FontWeight="Normal"
+						   HorizontalAlignment="Left"/>
+				<TextBox Width="200" 
+						 Height="30"
+						 Text="{Binding Login}"/>
+				<TextBlock Text="Пароль"
+						   FontFamily="Times New Roman"
+						   FontSize="18"
+						   FontWeight="Normal"
+						   HorizontalAlignment="Left"/>
+				<TextBox Width="200" 
+						 Height="30"
+						 Text="{Binding Password}"/>
+				<Image Source="{Binding CaptchaImage}"/>
+				<TextBox Width="200"
+						 Height="30"
+						 Text="{Binding UserInput}"/>
+				<Button Content="Войти"
+						Width="100"
+						HorizontalContentAlignment="Center"
+						Height="30"
+						Foreground="Black"
+						Background="#c3f174"
+						Command="{Binding ValidateAndEnter}"/>
+				<TextBlock Text="{Binding ResultOutputMessage}"
+						   HorizontalAlignment="Center"
+						   FontFamily="Times New Roman"
+						   FontSize="14"
+						   FontWeight="Bold"
+						   Foreground="{Binding MsgColor}"/>
+			</StackPanel>
+		</Border>
+	</Panel>
+
 </UserControl>
