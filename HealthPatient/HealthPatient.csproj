@@ -9,7 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
+    <Folder Include="Assets\Media\Administrators_media\" />
+    <Folder Include="Assets\Media\Patients_media\" />
+    <Folder Include="Assets\Media\Doctors_media\" />
+    <Folder Include="Assets\Media\Design_media\" />
     <AvaloniaResource Include="Assets\**" />
   </ItemGroup>
 

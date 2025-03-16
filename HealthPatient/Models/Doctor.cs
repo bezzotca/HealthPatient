@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Avalonia.Media.Imaging;
+using System;
 using System.Collections.Generic;
 
 namespace HealthPatient.Models;
@@ -22,6 +23,13 @@ public partial class Doctor
     public string Login { get; set; } = null!;
 
     public string Password { get; set; } = null!;
+
+    public int? GenderId { get; set; }
+
+    public string? Image { get; set; }
+
+    public Bitmap Photo => ConverterToBitmapImage.ConvertToDoctor(Image, GenderId.Value);
+    public virtual Gender? Gender { get; set; }
 
     public virtual ICollection<Notification> Notifications { get; set; } = new List<Notification>();
 

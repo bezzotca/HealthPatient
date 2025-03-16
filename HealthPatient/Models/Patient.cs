@@ -31,6 +31,12 @@ public partial class Patient
 
     public string Password { get; set; } = null!;
 
+    public int? GenderId { get; set; }
+
+    public string? Image { get; set; }
+
+    public virtual Gender? Gender { get; set; }
+
     public virtual ICollection<LoyaltyPointsHistory> LoyaltyPointsHistories { get; set; } = new List<LoyaltyPointsHistory>();
 
     public virtual ICollection<Notification> Notifications { get; set; } = new List<Notification>();

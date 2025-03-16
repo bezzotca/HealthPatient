@@ -9,13 +9,13 @@ public partial class Schedule
 
     public int? DoctorId { get; set; }
 
-    public DateOnly? Date { get; set; }
+    public DateOnly? DatestartSchedule { get; set; }
 
     public TimeOnly? StartTime { get; set; }
 
     public TimeOnly? EndTime { get; set; }
 
-    public bool? IsAvailable { get; set; }
+    public DateOnly? DateendSchedule { get; set; }
 
     public virtual Doctor? Doctor { get; set; }
 
