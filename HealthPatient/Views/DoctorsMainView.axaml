@@ -22,7 +22,8 @@
 						 ScrollViewer.VerticalScrollBarVisibility="Auto"
 						 Width="600"
 						 Height="700"
-						 HorizontalAlignment="Center">
+						 HorizontalAlignment="Center"
+						 Background="White">
 					<ListBox.ItemTemplate>
 						<DataTemplate>
 							<Border BorderBrush="Black"

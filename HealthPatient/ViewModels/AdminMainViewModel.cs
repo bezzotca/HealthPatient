@@ -15,11 +15,23 @@ namespace HealthPatient.ViewModels
         public AdminMainViewModel()
         {
             Instance = this;
+            if(MainWindowViewModel.Instance.PageSwitcherAdminPanel != null)
+            {
+                if(MainWindowViewModel.Instance.PageSwitcherAdminPanel.GetType().Name == "CheckVisitsViewModel")
+                {
+                    pageSwitcher = new CheckVisitsViewModel();
+                }
+                else if (MainWindowViewModel.Instance.PageSwitcherAdminPanel.GetType().Name == "AchievementsViewModel")
+                {
+                    pageSwitcher = new AchievementsViewModel();
+                }
+            }
+                
         }
         public void CheckDoctors()
-        {
-            
-            PageSwitcher = new DoctorsMainViewModel();
+        {   
+            AdminMainViewModel.Instance.PageSwitcher = new DoctorsMainViewModel();
         }
+        
     }
 }

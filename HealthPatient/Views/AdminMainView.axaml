@@ -73,7 +73,7 @@
 				</Border>
 			</StackPanel>
 		</SplitView.Pane>
-		<ContentControl Content="{Binding PageSwitcher}"/>
+			<ContentControl Content="{Binding PageSwitcher}"/>
 	</SplitView>
 	
 	

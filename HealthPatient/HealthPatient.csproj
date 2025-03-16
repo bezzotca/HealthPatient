@@ -14,6 +14,7 @@
     <Folder Include="Assets\Media\Doctors_media\" />
     <Folder Include="Assets\Media\Design_media\" />
     <AvaloniaResource Include="Assets\**" />
+    <Folder Include="Assets\Media\Achievements_media\" />
   </ItemGroup>
 
   <ItemGroup>

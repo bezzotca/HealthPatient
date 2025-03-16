@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Avalonia.Media.Imaging;
+using System;
 using System.Collections.Generic;
 
 namespace HealthPatient.Models;
@@ -10,6 +11,8 @@ public partial class DoctorAchievement
     public int? AchievementId { get; set; }
 
     public DateOnly? DateAchieved { get; set; }
+
+    public Bitmap Image => ConverterToBitmapImage.ConvertToAchieve(Achievement.BadgeImage,AchievementId);
 
     public virtual Achievement? Achievement { get; set; }
 

@@ -6,6 +6,7 @@ namespace HealthPatient.ViewModels
     public partial class MainWindowViewModel : ViewModelBase
     {
         [ObservableProperty] ViewModelBase pageSwitcher;
+        [ObservableProperty] ViewModelBase pageSwitcherAdminPanel;
         [ObservableProperty] public Administrator admin;
         [ObservableProperty] public Patient patient;
         [ObservableProperty] public Doctor doctor;
@@ -15,6 +16,11 @@ namespace HealthPatient.ViewModels
         {
             Instance = this;
             PageSwitcher = new LoginViewModel();
+        }
+
+        partial void OnPageSwitcherAdminPanelChanged(ViewModelBase value)
+        {
+            PageSwitcher = new AdminMainViewModel();
         }
 
     }
