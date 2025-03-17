@@ -105,6 +105,7 @@ namespace HealthPatient.ViewModels
         public void RedactInfoAboutDoctor(Doctor doctor)
         {
             MainWindowViewModel.Instance.Doctor = doctor;
+            MainWindowViewModel.Instance.PageSwitcherAdminPanel = new RedactInfoAboutDoctorViewModel();
         }
 
         public void CheckAchievements(Doctor doctor)
@@ -116,6 +117,7 @@ namespace HealthPatient.ViewModels
         public void CheckSpecialty(Doctor doctor)
         {
             MainWindowViewModel.Instance.Doctor = doctor;
+            MainWindowViewModel.Instance.PageSwitcherAdminPanel = new CheckSpecialtyViewModel();
         }
         
         public void CheckReviews(Doctor doctor)

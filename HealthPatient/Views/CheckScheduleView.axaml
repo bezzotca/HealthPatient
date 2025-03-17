@@ -14,7 +14,8 @@
 				<TextBlock Text="Расписание работы"/>
 				<StackPanel Orientation="Horizontal"
 							Spacing="2">
-					<ItemsControl ItemsSource="{Binding Schedule}">
+					<ItemsControl ItemsSource="{Binding Schedule}"
+								  Background="White">
 						<ItemsControl.ItemTemplate>
 							<DataTemplate>
 								<StackPanel Spacing="10">

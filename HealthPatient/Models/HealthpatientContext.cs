@@ -150,6 +150,7 @@ public partial class HealthpatientContext : DbContext
 
             entity.HasOne(d => d.Gender).WithMany(p => p.Doctors)
                 .HasForeignKey(d => d.GenderId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("doctors_genders_fk");
         });
 
@@ -165,10 +166,12 @@ public partial class HealthpatientContext : DbContext
 
             entity.HasOne(d => d.Achievement).WithMany()
                 .HasForeignKey(d => d.AchievementId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("doctor_achievements_achievement_id_fkey");
 
             entity.HasOne(d => d.Doctor).WithMany()
                 .HasForeignKey(d => d.DoctorId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("doctor_achievements_doctor_id_fkey");
         });
 
@@ -187,10 +190,12 @@ public partial class HealthpatientContext : DbContext
 
             entity.HasOne(d => d.Doctor).WithMany()
                 .HasForeignKey(d => d.DoctorId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("doctor_specialties_doctor_id_fkey");
 
             entity.HasOne(d => d.Specialty).WithMany()
                 .HasForeignKey(d => d.SpecialtyId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("doctor_specialties_specialty_id_fkey");
         });
 
@@ -228,10 +233,12 @@ public partial class HealthpatientContext : DbContext
 
             entity.HasOne(d => d.Patient).WithMany(p => p.LoyaltyPointsHistories)
                 .HasForeignKey(d => d.PatientId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("loyalty_points_history_patient_id_fkey");
 
             entity.HasOne(d => d.Visit).WithMany(p => p.LoyaltyPointsHistories)
                 .HasForeignKey(d => d.VisitId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("loyalty_points_history_visit_id_fkey");
         });
 
@@ -258,10 +265,12 @@ public partial class HealthpatientContext : DbContext
 
             entity.HasOne(d => d.Doctor).WithMany(p => p.Notifications)
                 .HasForeignKey(d => d.DoctorId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("notifications_doctor_id_fkey");
 
             entity.HasOne(d => d.Patient).WithMany(p => p.Notifications)
                 .HasForeignKey(d => d.PatientId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("notifications_patient_id_fkey");
         });
 
@@ -313,6 +322,7 @@ public partial class HealthpatientContext : DbContext
 
             entity.HasOne(d => d.Gender).WithMany(p => p.Patients)
                 .HasForeignKey(d => d.GenderId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("patients_genders_fk");
         });
 
@@ -334,10 +344,12 @@ public partial class HealthpatientContext : DbContext
 
             entity.HasOne(d => d.Doctor).WithMany(p => p.Reviews)
                 .HasForeignKey(d => d.DoctorId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("reviews_doctor_id_fkey");
 
             entity.HasOne(d => d.Patient).WithMany(p => p.Reviews)
                 .HasForeignKey(d => d.PatientId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("reviews_patient_id_fkey");
         });
 
@@ -356,6 +368,7 @@ public partial class HealthpatientContext : DbContext
 
             entity.HasOne(d => d.Doctor).WithMany(p => p.Schedules)
                 .HasForeignKey(d => d.DoctorId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("schedules_doctor_id_fkey");
         });
 
@@ -389,10 +402,12 @@ public partial class HealthpatientContext : DbContext
 
             entity.HasOne(d => d.Doctor).WithMany(p => p.ServicePrices)
                 .HasForeignKey(d => d.DoctorId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("service_prices_doctor_id_fkey");
 
             entity.HasOne(d => d.Service).WithMany(p => p.ServicePrices)
                 .HasForeignKey(d => d.ServiceId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("service_prices_service_id_fkey");
         });
 
@@ -434,10 +449,12 @@ public partial class HealthpatientContext : DbContext
 
             entity.HasOne(d => d.Specialty).WithMany()
                 .HasForeignKey(d => d.SpecialtyId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("symptom_specialty_specialty_id_fkey");
 
             entity.HasOne(d => d.Symptom).WithMany()
                 .HasForeignKey(d => d.SymptomId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("symptom_specialty_symptom_id_fkey");
         });
 
@@ -473,14 +490,17 @@ public partial class HealthpatientContext : DbContext
 
             entity.HasOne(d => d.Doctor).WithMany(p => p.Visits)
                 .HasForeignKey(d => d.DoctorId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("visits_doctor_id_fkey");
 
             entity.HasOne(d => d.Patient).WithMany(p => p.Visits)
                 .HasForeignKey(d => d.PatientId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("visits_patient_id_fkey");
 
             entity.HasOne(d => d.Schedule).WithMany(p => p.Visits)
                 .HasForeignKey(d => d.ScheduleId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("visits_schedule_id_fkey");
         });
 

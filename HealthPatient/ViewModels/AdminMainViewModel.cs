@@ -33,6 +33,14 @@ namespace HealthPatient.ViewModels
                 {
                     pageSwitcher = new CheckScheduleViewModel();
                 }
+                else if (MainWindowViewModel.Instance.PageSwitcherAdminPanel.GetType().Name == "CheckSpecialtyViewModel")
+                {
+                    pageSwitcher = new CheckSpecialtyViewModel();
+                }
+                else if (MainWindowViewModel.Instance.PageSwitcherAdminPanel.GetType().Name == "RedactInfoAboutDoctorViewModel")
+                {
+                    pageSwitcher = new RedactInfoAboutDoctorViewModel();
+                }
             }
                 
         }

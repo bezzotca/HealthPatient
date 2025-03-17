@@ -11,7 +11,7 @@ namespace HealthPatient.Models
 {
     public partial class ConverterToBitmapImage
     {
-        public static Bitmap ConvertToDoctor(string Image, int RoleId)
+        public static Bitmap ConvertToDoctor(string Image, int? RoleId)
         {
             string assemblyName = Assembly.GetExecutingAssembly().GetName().Name;
             Uri uri = new Uri($"avares://{assemblyName}/Assets/Media/Doctors_media/{Image}");
