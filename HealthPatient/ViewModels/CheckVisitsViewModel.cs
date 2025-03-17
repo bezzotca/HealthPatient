@@ -24,6 +24,10 @@ namespace HealthPatient.ViewModels
             {
                 visits = Db.Visits.Include(x => x.Patient).Include(x => x.Schedule).Include(x => x.Doctor).Where(x => x.PatientId == patient.PatientId).ToList();
             }
+            else if(doctor == null && patient == null)
+            {
+                visits = Db.Visits.Include(x => x.Patient).Include(x => x.Schedule).Include(x => x.Doctor).ToList();
+            }
             
         }
 

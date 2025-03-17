@@ -99,20 +99,25 @@ namespace HealthPatient.ViewModels
         public void GoToLoyalty(Patient patient)
         {
             MainWindowViewModel.Instance.Patient = patient;
+            MainWindowViewModel.Instance.Doctor = null;
             MainWindowViewModel.Instance.PageSwitcherAdminPanel = new CheckLoyaltyViewModel();
         }
         public void GoToVisits(Patient patient)
         {
             MainWindowViewModel.Instance.Patient = patient;
+            MainWindowViewModel.Instance.Doctor = null;
             MainWindowViewModel.Instance.PageSwitcherAdminPanel = new CheckVisitsViewModel();
         }
         public void GoToNotifications(Patient patient)
         {
             MainWindowViewModel.Instance.Patient = patient;
+            MainWindowViewModel.Instance.Doctor = null;
+            MainWindowViewModel.Instance.PageSwitcherAdminPanel = new NotificationsViewModel();
         }
         public void RedactInfoAboutPatient(Patient patient)
         {
             MainWindowViewModel.Instance.Patient = patient;
+            MainWindowViewModel.Instance.Doctor = null;
             MainWindowViewModel.Instance.PageSwitcherAdminPanel = new RedactInfoAboutPatientViewModel();
         }
     }

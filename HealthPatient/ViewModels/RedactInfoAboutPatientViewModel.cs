@@ -19,6 +19,7 @@ namespace HealthPatient.ViewModels
 
         public void Save(Patient patient)
         {
+            patient.UpdatedAt = DateTime.Now;   
             Db.Patients.Update(patient);
             Db.SaveChanges();
         }

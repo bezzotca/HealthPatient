@@ -4,21 +4,21 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="HealthPatient.Views.CheckVisitsView"
-			 x:DataType="vm:CheckVisitsViewModel">
+             x:Class="HealthPatient.Views.NotificationsView"
+			 x:DataType="vm:NotificationsViewModel">
 	<Grid ColumnDefinitions="*,*">
 		<StackPanel Grid.Column="0"
 					VerticalAlignment="Center"
 						HorizontalAlignment="Center">
 			<StackPanel Spacing="20">
 				<TextBlock Text="Приёмы"/>
-				<ListBox ItemsSource="{Binding Visits}" 
+				<ListBox ItemsSource="{Binding Notifications}"
 						 Width="600"
 						 Height="700"
 						 Background="White">
 					<ListBox.ItemTemplate>
 						<DataTemplate>
-							<Border BorderThickness="2" 
+							<Border BorderThickness="2"
 									CornerRadius="5"
 									BorderBrush="Black"
 									Height="300">
@@ -34,8 +34,8 @@
 									<StackPanel
 										Orientation="Horizontal"
 										Spacing="5">
-										<TextBlock Text="Поставленный диагноз"/>
-										<TextBox Text="{Binding Diagnosis}"/>
+										<TextBlock Text="Статус"/>
+										<TextBox Text="{Binding Status}"/>
 									</StackPanel>
 									<StackPanel
 										Orientation="Horizontal"
@@ -48,20 +48,14 @@
 									<StackPanel
 										Orientation="Horizontal"
 										Spacing="5">
-										<TextBlock Text="Cтоимость визита"/>
-										<TextBlock Text="{Binding Cost}"/>
+										<TextBlock Text="Тип"/>
+										<TextBlock Text="{Binding Type}"/>
 									</StackPanel>
 									<StackPanel
 										Orientation="Horizontal"
 										Spacing="5">
-										<TextBlock Text="Дата посещения"/>
-										<TextBlock Text="{Binding VisitDate}"/>
-									</StackPanel>
-									<StackPanel
-										Orientation="Horizontal"
-										Spacing="5">
-										<TextBlock Text="Предписания"/>
-										<TextBox Text="{Binding Prescriptions}"
+										<TextBlock Text="Сообщение"/>
+										<TextBox Text="{Binding Message}"
 												 TextWrapping="Wrap"
 												 Height="50"
 												 Width="200"/>
@@ -71,18 +65,25 @@
 													Foreground="Black"
 													Background="#b279f6"
 											CommandParameter="{Binding}"
-													Command="{Binding $parent[UserControl]((vm:CheckVisitsViewModel)DataContext).Save}"
+													Command="{Binding $parent[UserControl]((vm:NotificationsViewModel)DataContext).Save}"
+											HorizontalAlignment="Center"/>
+									<Button Content="Прочитать"
+													HorizontalContentAlignment="Center"
+													Foreground="Black"
+													Background="#b279f6"
+											CommandParameter="{Binding}"
+													Command="{Binding $parent[UserControl]((vm:NotificationsViewModel)DataContext).Read}"
 											HorizontalAlignment="Center"/>
 								</StackPanel>
 							</Border>
-							
+
 						</DataTemplate>
 					</ListBox.ItemTemplate>
 				</ListBox>
 			</StackPanel>
 		</StackPanel>
 		<StackPanel Grid.Column="1">
-			
+
 		</StackPanel>
 	</Grid>
 </UserControl>

@@ -16,7 +16,14 @@ namespace HealthPatient.ViewModels
         public CheckReviewsViewModel()
         {
             doctor = MainWindowViewModel.Instance.Doctor;
-            reviews = Db.Reviews.Include(x=>x.Doctor).Include(x=>x.Patient).Where(x=>x.DoctorId == doctor.DoctorId).ToList();
+            if(doctor != null)
+            {
+                reviews = Db.Reviews.Include(x => x.Doctor).Include(x => x.Patient).Where(x => x.DoctorId == doctor.DoctorId).ToList();
+            }
+            else if(doctor == null && MainWindowViewModel.Instance.Patient == null)
+            {
+                reviews = Db.Reviews.Include(x => x.Doctor).Include(x => x.Patient).ToList();
+            }
         }
     }
 }

@@ -17,7 +17,14 @@ namespace HealthPatient.ViewModels
         public CheckLoyaltyViewModel()
         {
             patient = MainWindowViewModel.Instance.Patient;
-            loyalty = Db.LoyaltyPointsHistories.Include(x=>x.Visit).Include(x=>x.Patient).Where(x=>x.PatientId == patient.PatientId).ToList();
+            if(patient != null)
+            {
+                loyalty = Db.LoyaltyPointsHistories.Include(x => x.Visit).Include(x => x.Patient).Where(x => x.PatientId == patient.PatientId).ToList();
+            }
+            else if(patient == null && MainWindowViewModel.Instance.Doctor == null)
+            {
+                loyalty = Db.LoyaltyPointsHistories.Include(x => x.Visit).Include(x => x.Patient).ToList();
+            }
         }
 
         public void Save(LoyaltyPointsHistory loyalty)

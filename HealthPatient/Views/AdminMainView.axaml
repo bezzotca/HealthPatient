@@ -24,13 +24,14 @@
 								HorizontalAlignment="Center"
 								VerticalAlignment="Center"
 								Margin="0,70">
-						<Button Content="Администраторы"
+						<Button Content="Личный кабинет"
 						Width="200"
 						HorizontalContentAlignment="Center"
 						Foreground="White"
 						Background="Transparent"
 						FontWeight="Normal"
 						FontSize="20"
+								Command="{Binding CheckAdminRights}"
 								/>
 						<Button Content="Врачи"
 								Width="200"
@@ -57,19 +58,22 @@
 								Background="Transparent"
 								FontWeight="Normal"
 								FontSize="20"
+								Command="{Binding CheckAllVisits}"
 							/>
 						<Button Content="Отзывы"
 								Width="200"
 								HorizontalContentAlignment="Center"
 								Foreground="White"
 								Background="Transparent"
-								FontSize="20"/>
+								FontSize="20"
+								Command="{Binding CheckAllReviews}"/>
 						<Button Content="Лояльность"
 								Width="200"
 								HorizontalContentAlignment="Center"
 								Foreground="White"
 								Background="Transparent"
-								FontSize="20"/>
+								FontSize="20"
+								Command="{Binding CheckAllLoyalty}"/>
 					</StackPanel>
 				</Border>
 			</StackPanel>

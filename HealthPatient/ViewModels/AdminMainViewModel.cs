@@ -49,6 +49,10 @@ namespace HealthPatient.ViewModels
                 {
                     pageSwitcher = new RedactInfoAboutPatientViewModel();
                 }
+                else if (MainWindowViewModel.Instance.PageSwitcherAdminPanel.GetType().Name == "NotificationsViewModel")
+                {
+                    pageSwitcher = new NotificationsViewModel();
+                }
             }
                 
         }
@@ -60,6 +64,30 @@ namespace HealthPatient.ViewModels
         public void CheckPatients()
         {
             AdminMainViewModel.Instance.PageSwitcher = new PatientsMainViewModel();
+        }
+        public void CheckAllVisits()
+        {
+            MainWindowViewModel.Instance.Doctor = null;
+            MainWindowViewModel.Instance.Patient = null;
+            AdminMainViewModel.Instance.PageSwitcher = new CheckVisitsViewModel();
+        }
+        public void CheckAllReviews()
+        {
+            MainWindowViewModel.Instance.Doctor = null;
+            MainWindowViewModel.Instance.Patient = null;
+            AdminMainViewModel.Instance.PageSwitcher = new CheckReviewsViewModel();
+        }
+        public void CheckAllLoyalty()
+        {
+            MainWindowViewModel.Instance.Doctor = null;
+            MainWindowViewModel.Instance.Patient = null;
+            AdminMainViewModel.Instance.PageSwitcher = new CheckLoyaltyViewModel();
+        }
+        public void CheckAdminRights()
+        {
+            MainWindowViewModel.Instance.Doctor = null;
+            MainWindowViewModel.Instance.Patient = null;
+            AdminMainViewModel.Instance.PageSwitcher = new AdminRightsViewModel();
         }
     }
 }
