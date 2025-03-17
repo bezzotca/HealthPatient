@@ -45,6 +45,10 @@ namespace HealthPatient.ViewModels
                 {
                     pageSwitcher = new CheckLoyaltyViewModel();
                 }
+                else if (MainWindowViewModel.Instance.PageSwitcherAdminPanel.GetType().Name == "RedactInfoAboutPatientViewModel")
+                {
+                    pageSwitcher = new RedactInfoAboutPatientViewModel();
+                }
             }
                 
         }

@@ -104,6 +104,7 @@ namespace HealthPatient.ViewModels
         public void GoToVisits(Patient patient)
         {
             MainWindowViewModel.Instance.Patient = patient;
+            MainWindowViewModel.Instance.PageSwitcherAdminPanel = new CheckVisitsViewModel();
         }
         public void GoToNotifications(Patient patient)
         {
@@ -112,6 +113,7 @@ namespace HealthPatient.ViewModels
         public void RedactInfoAboutPatient(Patient patient)
         {
             MainWindowViewModel.Instance.Patient = patient;
+            MainWindowViewModel.Instance.PageSwitcherAdminPanel = new RedactInfoAboutPatientViewModel();
         }
     }
 }

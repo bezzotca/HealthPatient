@@ -12,10 +12,19 @@ namespace HealthPatient.ViewModels
     public partial class CheckVisitsViewModel: ViewModelBase
     {
         [ObservableProperty] Doctor doctor = MainWindowViewModel.Instance.Doctor;
+        [ObservableProperty] Patient patient = MainWindowViewModel.Instance.Patient;
         [ObservableProperty] List<Visit> visits;
         public CheckVisitsViewModel()
         {
-            visits = Db.Visits.Include(x=>x.Patient).Include(x=>x.Schedule).Include(x => x.Doctor).Where(x=>x.VisitId == doctor.DoctorId).ToList();
+            if (doctor != null)
+            {
+                visits = Db.Visits.Include(x => x.Patient).Include(x => x.Schedule).Include(x => x.Doctor).Where(x => x.DoctorId == doctor.DoctorId).ToList();
+            }
+            else if(patient != null)
+            {
+                visits = Db.Visits.Include(x => x.Patient).Include(x => x.Schedule).Include(x => x.Doctor).Where(x => x.PatientId == patient.PatientId).ToList();
+            }
+            
         }
 
         public void Save(Visit visit)
@@ -30,6 +39,7 @@ namespace HealthPatient.ViewModels
                 visit.Doctor.UpdatedAt = DateTime.Now;
             }
             visit.UpdatedAt = DateTime.Now;
+            Db.Visits.Update(visit);
             Db.SaveChanges();
         }
     }

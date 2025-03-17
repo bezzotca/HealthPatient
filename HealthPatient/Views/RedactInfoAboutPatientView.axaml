@@ -1,0 +1,68 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:vm="using:HealthPatient.ViewModels"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="HealthPatient.Views.RedactInfoAboutPatientView"
+			 x:DataType="vm:RedactInfoAboutPatientViewModel">
+	<StackPanel VerticalAlignment="Center"
+				  HorizontalAlignment="Center"
+				  Spacing="20">
+		<StackPanel>
+			<TextBlock Text="Окно редактирования личной информации о пациенте"
+					   FontWeight="Bold"
+					   FontFamily="Times New Roman"
+					   FontSize="24"
+					   HorizontalAlignment="Center"/>
+		</StackPanel>
+		<Grid ColumnDefinitions="*,*">
+			<StackPanel Grid.Column="0" Spacing="10">
+				<StackPanel Orientation="Horizontal"
+					Spacing="2">
+					<TextBlock Text="Имя"/>
+					<TextBox Text="{Binding Patient.FirstName}"/>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal"
+							Spacing="2">
+					<TextBlock Text="Фамилия"/>
+					<TextBox Text="{Binding Patient.LastName}"/>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal"
+							Spacing="2">
+					<TextBlock Text="Предписания"/>
+					<TextBox Text="{Binding Patient.MedicalNotes}"/>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal"
+							Spacing="2">
+					<TextBlock Text="Номер телефона"/>
+					<TextBox Text="{Binding Patient.ContactPhone}"/>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal"
+							Spacing="2">
+					<TextBlock Text="Логин"/>
+					<TextBox Text="{Binding Patient.Login}"/>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal"
+							Spacing="2">
+					<TextBlock Text="Пароль"/>
+					<TextBox Text="{Binding Patient.Password}"
+							 PasswordChar="*"/>
+				</StackPanel>
+
+				<StackPanel Orientation="Horizontal"
+							Spacing="2">
+					<Button Content="Сохранить изменения"
+							HorizontalContentAlignment="Center"
+							CommandParameter="{Binding Patient}"
+							Command="{Binding $parent[UserControl]((vm:RedactInfoAboutPatientViewModel)DataContext).Save}"/>
+					<Button Content="Удалить"
+							HorizontalContentAlignment="Center"
+							CommandParameter="{Binding Patient}"
+							Command="{Binding $parent[UserControl]((vm:RedactInfoAboutPatientViewModel)DataContext).Delete}"/>
+				</StackPanel>
+
+			</StackPanel>
+		</Grid>
+	</StackPanel>
+</UserControl>
