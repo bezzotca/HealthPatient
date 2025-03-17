@@ -12,8 +12,7 @@ public partial class DoctorAchievement
 
     public DateOnly? DateAchieved { get; set; }
 
-    public Bitmap Image => ConverterToBitmapImage.ConvertToAchieve(Achievement.BadgeImage,AchievementId);
-
+    public Bitmap Image => ConverterToBitmapImage.ConvertToAchieve(Achievement.BadgeImage, AchievementId);
     public virtual Achievement? Achievement { get; set; }
 
     public virtual Doctor? Doctor { get; set; }

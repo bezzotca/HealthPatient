@@ -28,10 +28,8 @@ public partial class Doctor
 
     public string? Image { get; set; }
 
-    public Bitmap Photo => ConverterToBitmapImage.ConvertToDoctor(Image, GenderId);
-
     public virtual Gender? Gender { get; set; }
-
+    public Bitmap Photo => ConverterToBitmapImage.ConvertToDoctor(Image, GenderId);
     public virtual ICollection<Notification> Notifications { get; set; } = new List<Notification>();
 
     public virtual ICollection<Review> Reviews { get; set; } = new List<Review>();

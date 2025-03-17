@@ -29,6 +29,8 @@ public partial class HealthpatientContext : DbContext
 
     public virtual DbSet<LoyaltyPointsHistory> LoyaltyPointsHistories { get; set; }
 
+    public virtual DbSet<News> News { get; set; }
+
     public virtual DbSet<Notification> Notifications { get; set; }
 
     public virtual DbSet<Patient> Patients { get; set; }
@@ -240,6 +242,23 @@ public partial class HealthpatientContext : DbContext
                 .HasForeignKey(d => d.VisitId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("loyalty_points_history_visit_id_fkey");
+        });
+
+        modelBuilder.Entity<News>(entity =>
+        {
+            entity.HasKey(e => e.Newid).HasName("news_pk");
+
+            entity.ToTable("news");
+
+            entity.Property(e => e.Newid)
+                .ValueGeneratedNever()
+                .HasColumnName("newid");
+            entity.Property(e => e.Maintext)
+                .HasMaxLength(1000)
+                .HasColumnName("maintext");
+            entity.Property(e => e.Titlenew)
+                .HasMaxLength(100)
+                .HasColumnName("titlenew");
         });
 
         modelBuilder.Entity<Notification>(entity =>

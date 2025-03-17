@@ -6,5 +6,29 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="HealthPatient.Views.AdminRightsView"
 			 x:DataType="vm:AdminRightsViewModel">
-  Welcome to Avalonia!
+	<StackPanel HorizontalAlignment="Center"
+				VerticalAlignment="Center">
+		<StackPanel Spacing="20">
+			<TextBlock Text="{Binding HelloMessage}"/>
+			<StackPanel Orientation="Horizontal"
+						Spacing="3">
+				<TextBlock Text="{Binding MrMrs}"/>
+				<TextBlock Text="{Binding Admin.FirstName}"/>
+			</StackPanel>
+			<TextBlock Text="Выберите действие"
+					   HorizontalAlignment="Center"/>
+			<StackPanel Orientation="Horizontal"
+						Spacing="10">
+				<Button Content="Редактировать профиль"
+						HorizontalAlignment="Center"
+						Command="{Binding Redact}"/>
+				<Button Content="Добавить новость"
+						HorizontalAlignment="Center"
+						Command="{Binding AddNews}"/>
+				<Button Content="Зарегистрировать пользователя"
+						HorizontalAlignment="Center"
+						Command="{Binding AddUser}"/>
+			</StackPanel>
+		</StackPanel>
+	</StackPanel>
 </UserControl>

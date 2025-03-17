@@ -35,7 +35,6 @@ public partial class Patient
     public int? GenderId { get; set; }
 
     public string? Image { get; set; }
-
     public Bitmap Photo => ConverterToBitmapImage.ConvertToPatient(Image, GenderId);
     public virtual Gender? Gender { get; set; }
 

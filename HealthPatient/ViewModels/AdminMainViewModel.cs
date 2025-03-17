@@ -53,6 +53,14 @@ namespace HealthPatient.ViewModels
                 {
                     pageSwitcher = new NotificationsViewModel();
                 }
+                else if (MainWindowViewModel.Instance.PageSwitcherAdminPanel.GetType().Name == "AddNewViewModel")
+                {
+                    pageSwitcher = new AddNewViewModel();
+                }
+                else if (MainWindowViewModel.Instance.PageSwitcherAdminPanel.GetType().Name == "RedactInfoAboutAdminViewModel")
+                {
+                    pageSwitcher = new RedactInfoAboutAdminViewModel();
+                }
             }
                 
         }
