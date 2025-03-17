@@ -127,6 +127,7 @@ namespace HealthPatient.ViewModels
         public void CheckSchedule(Doctor doctor)
         {
             MainWindowViewModel.Instance.Doctor = doctor;
+            MainWindowViewModel.Instance.PageSwitcherAdminPanel = new CheckScheduleViewModel();
         }
 
 

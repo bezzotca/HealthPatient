@@ -29,6 +29,10 @@ namespace HealthPatient.ViewModels
                 {
                     pageSwitcher = new CheckReviewsViewModel();
                 }
+                else if (MainWindowViewModel.Instance.PageSwitcherAdminPanel.GetType().Name == "CheckScheduleViewModel")
+                {
+                    pageSwitcher = new CheckScheduleViewModel();
+                }
             }
                 
         }
