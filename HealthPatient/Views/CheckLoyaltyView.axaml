@@ -1,0 +1,48 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:vm="using:HealthPatient.ViewModels"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
+             x:Class="HealthPatient.Views.CheckLoyaltyView"
+			 x:DataType="vm:CheckLoyaltyViewModel">
+	<Grid ColumnDefinitions="*,*">
+		<StackPanel Grid.Column="0"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center">
+			<StackPanel Spacing="40">
+				<TextBlock Text="Лояльность"
+						   HorizontalAlignment="Center"
+						   VerticalAlignment="Center"/>
+				<StackPanel>
+					<ListBox ItemsSource="{Binding Loyalty}"
+							 Height="700"
+							 Width="600"
+							 Background="White">
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<Border BorderBrush="Black"
+									BorderThickness="2"
+									Margin="0 5"
+									Height="250"
+									CornerRadius="5">
+									<StackPanel Spacing="10">
+										<StackPanel Orientation="Horizontal"
+													Spacing="2">
+											<TextBlock Text="{Binding Patient.LastName, StringFormat= ФИО пациента: {0}}"/>
+											<TextBlock  Text="{Binding Patient.FirstName}"/>
+											<TextBlock Text="{Binding Patient.Patronymic}"/>
+										</StackPanel>
+										<TextBlock Text="{Binding CreatedAt, StringFormat= Получено: {0}}"/>
+										<TextBlock Text="{Binding Reason, StringFormat= Причина: {0}}"/>
+										<TextBlock Text="{Binding PointsAdded, StringFormat= Получено {0} поинтов}"/>
+									</StackPanel>
+								</Border>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+				</StackPanel>
+			</StackPanel>
+		</StackPanel>
+	</Grid>
+</UserControl>

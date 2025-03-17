@@ -48,6 +48,7 @@
 								Background="Transparent"
 								FontWeight="Normal"
 								FontSize="20"
+								Command="{Binding CheckPatients}"
 							/>
 						<Button Content="Приёмы"
 								Width="200"

@@ -68,50 +68,35 @@
 											<TextBlock Text="{Binding UpdatedAt}"/>
 										</StackPanel>
 										<StackPanel Orientation="Horizontal"
-													Spacing="15"
-													HorizontalAlignment="Center">
-											<Button Content="Визиты"
-													HorizontalContentAlignment="Center"
-													Foreground="Black"
-													Background="#b279f6"
-													CommandParameter="{Binding}"
-													Command="{Binding $parent[UserControl]((vm:DoctorsMainViewModel)DataContext).CheckVisits}"/>
-											<Button Content="Достижения"
-													HorizontalContentAlignment="Center"
-													Foreground="Black"
-													Background="#b279f6"
-													CommandParameter="{Binding}"
-													Command="{Binding $parent[UserControl]((vm:DoctorsMainViewModel)DataContext).CheckAchievements}"/>
-											<Button Content="Отзывы"
-													HorizontalContentAlignment="Center"
-													Foreground="Black"
-													Background="#b279f6"
-													CommandParameter="{Binding}"
-													Command="{Binding $parent[UserControl]((vm:DoctorsMainViewModel)DataContext).CheckReviews}"/>
-										</StackPanel>
-										<StackPanel Orientation="Horizontal"
 													Spacing="5"
 													HorizontalAlignment="Center"
 													Margin="0,5">
-											<Button Content="Расписание"
+											<Button Content="Уведомления"
 													HorizontalContentAlignment="Center"
 													Foreground="Black"
 													Background="#b279f6"
 													CommandParameter="{Binding}"
-													Command="{Binding $parent[UserControl]((vm:DoctorsMainViewModel)DataContext).CheckSchedule}"/>
-											<Button Content="Редактировать"
+													Command="{Binding $parent[UserControl]((vm:PatientsMainViewModel)DataContext).GoToNotifications}"/>
+											<Button Content="Лояльность"
 													HorizontalContentAlignment="Center"
 													Foreground="Black"
 													Background="#b279f6"
 													CommandParameter="{Binding}"
-													Command="{Binding $parent[UserControl]((vm:DoctorsMainViewModel)DataContext).RedactInfoAboutDoctor}"/>
-											<Button Content="Специалитет"
+													Command="{Binding $parent[UserControl]((vm:PatientsMainViewModel)DataContext).GoToLoyalty}"/>
+											<Button Content="Приёмы"
 													HorizontalContentAlignment="Center"
 													Foreground="Black"
 													Background="#b279f6"
-													Command="{Binding $parent[UserControl]((vm:DoctorsMainViewModel)DataContext).CheckSpecialty}"
+													Command="{Binding $parent[UserControl]((vm:PatientsMainViewModel)DataContext).GoToVisits}"
 													CommandParameter="{Binding}"/>
 										</StackPanel>
+										<Button Content="Редактировать"
+													HorizontalContentAlignment="Center"
+													Foreground="Black"
+													Background="#b279f6"
+													Command="{Binding $parent[UserControl]((vm:PatientsMainViewModel)DataContext).RedactInfoAboutPatient}"
+													CommandParameter="{Binding}"
+												HorizontalAlignment="Center"/>
 									</StackPanel>
 								</Grid>
 							</Border>
