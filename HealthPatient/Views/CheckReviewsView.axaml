@@ -1,0 +1,60 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:vm="using:HealthPatient.ViewModels"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="HealthPatient.Views.CheckReviewsView"
+			 x:DataType="vm:CheckReviewsViewModel">
+	<Grid ColumnDefinitions="*, *">
+		<StackPanel Grid.Column="0"
+					VerticalAlignment="Center"
+					HorizontalAlignment="Center">
+			<StackPanel Spacing="20">
+				<TextBlock Text="Отзывы"/>
+				<ListBox ItemsSource="{Binding Reviews}"
+						 Height="700"
+						 Width="350"
+						 Background="White">
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<Border BorderBrush="Black"
+									BorderThickness="2"
+									CornerRadius="5"
+									Margin="0,5"
+									Height="300"
+									Width="350">
+								<StackPanel Spacing="15"
+											Margin="20,20">
+									<TextBlock Text="{Binding ReviewId, StringFormat= Отзыв номер {0} в системе}"/>
+									<TextBlock Text="{Binding Rating, StringFormat= Поставленный рейтинг {0}}"/>
+									<StackPanel Orientation="Horizontal"
+												Spacing="2">
+										<TextBlock Text="{Binding Doctor.LastName, StringFormat= Врач : {0}}"/>
+										<TextBlock Text="{Binding Doctor.FirstName}"/>
+										<TextBlock Text="{Binding Doctor.Patronymic}"/>
+									</StackPanel>
+									<StackPanel Orientation="Horizontal"
+												Spacing="2">
+										<TextBlock Text="{Binding Patient.LastName, StringFormat= Пациент : {0}}"/>
+										<TextBlock Text="{Binding Patient.FirstName}"/>
+										<TextBlock Text="{Binding Patient.Patronymic}"/>
+									</StackPanel>
+									<TextBlock Text="{Binding CreatedAt, StringFormat= Отзыв создан : {0}}"/>
+									<StackPanel Orientation="Horizontal"
+												Spacing="2">
+										<TextBlock Text="Комментарий :"/>
+										<TextBox Text="{Binding Comment}"
+											 Height="90"
+											 Width="200"
+												 TextWrapping="Wrap"/>
+									</StackPanel>
+								</StackPanel>
+							</Border>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+			</StackPanel>
+		</StackPanel>
+	</Grid>
+</UserControl>
