@@ -49,5 +49,9 @@ namespace HealthPatient.ViewModels
             AdminMainViewModel.Instance.PageSwitcher = new DoctorsMainViewModel();
         }
         
+        public void CheckPatients()
+        {
+            AdminMainViewModel.Instance.PageSwitcher = new PatientsMainViewModel();
+        }
     }
 }

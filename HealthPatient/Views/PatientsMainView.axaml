@@ -6,5 +6,148 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="HealthPatient.Views.PatientsMainView"
 			 x:DataType="vm:PatientsMainViewModel">
-  Welcome to Avalonia!
+	<Grid ColumnDefinitions="*,*">
+		<StackPanel Margin="0,10" Grid.Column="0">
+			<!-- Заголовок -->
+			<TextBlock Text="Пациенты"
+					   FontWeight="Bold"
+					   FontFamily="Times New Roman"
+					   FontSize="24"
+					   HorizontalAlignment="Center"
+					   Margin="0 0 0 40"/>
+
+			<!-- Список докторов -->
+			<StackPanel>
+				<ListBox ItemsSource="{Binding Patients}"
+						 ScrollViewer.VerticalScrollBarVisibility="Auto"
+						 Width="600"
+						 Height="700"
+						 HorizontalAlignment="Center"
+						 Background="White">
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<Border BorderBrush="Black"
+									BorderThickness="2"
+									Margin="0 5"
+									Height="250"
+									CornerRadius="5">
+								<Grid ColumnDefinitions="200,*">
+									<StackPanel Grid.Column="0"
+												VerticalAlignment="Center">
+										<Image Source="{Binding Photo}"
+											   Height="200"
+											   Width="200"
+										   />
+									</StackPanel>
+									<StackPanel Grid.Column="1">
+										<StackPanel Orientation="Horizontal"
+													Spacing="10"
+													Margin="5,5">
+											<TextBlock Text="{Binding LastName, StringFormat= Фио : {0}}" />
+											<TextBlock Text=" " />
+											<TextBlock Text="{Binding FirstName}" />
+											<TextBlock Text=" " />
+											<TextBlock Text="{Binding Patronymic}" />
+										</StackPanel>
+										<StackPanel HorizontalAlignment="Center"
+													Spacing="10"
+													Margin="0,10">
+											<TextBlock Text="{Binding ContactPhone, StringFormat= Телефон : {0}}"/>
+											<TextBlock Text="{Binding BirthDate, StringFormat= Дата рождения : {0}}"/>
+										</StackPanel>
+										<StackPanel HorizontalAlignment="Center"
+													Spacing="20"
+													Orientation="Horizontal">
+											<TextBlock Text="Создан"/>
+											<TextBlock Text="Изменен"/>
+										</StackPanel>
+										<StackPanel HorizontalAlignment="Center"
+													Spacing="2"
+													Orientation="Horizontal">
+											<TextBlock Text="{Binding CreatedAt}"/>
+											<TextBlock Text="{Binding UpdatedAt}"/>
+										</StackPanel>
+										<StackPanel Orientation="Horizontal"
+													Spacing="15"
+													HorizontalAlignment="Center">
+											<Button Content="Визиты"
+													HorizontalContentAlignment="Center"
+													Foreground="Black"
+													Background="#b279f6"
+													CommandParameter="{Binding}"
+													Command="{Binding $parent[UserControl]((vm:DoctorsMainViewModel)DataContext).CheckVisits}"/>
+											<Button Content="Достижения"
+													HorizontalContentAlignment="Center"
+													Foreground="Black"
+													Background="#b279f6"
+													CommandParameter="{Binding}"
+													Command="{Binding $parent[UserControl]((vm:DoctorsMainViewModel)DataContext).CheckAchievements}"/>
+											<Button Content="Отзывы"
+													HorizontalContentAlignment="Center"
+													Foreground="Black"
+													Background="#b279f6"
+													CommandParameter="{Binding}"
+													Command="{Binding $parent[UserControl]((vm:DoctorsMainViewModel)DataContext).CheckReviews}"/>
+										</StackPanel>
+										<StackPanel Orientation="Horizontal"
+													Spacing="5"
+													HorizontalAlignment="Center"
+													Margin="0,5">
+											<Button Content="Расписание"
+													HorizontalContentAlignment="Center"
+													Foreground="Black"
+													Background="#b279f6"
+													CommandParameter="{Binding}"
+													Command="{Binding $parent[UserControl]((vm:DoctorsMainViewModel)DataContext).CheckSchedule}"/>
+											<Button Content="Редактировать"
+													HorizontalContentAlignment="Center"
+													Foreground="Black"
+													Background="#b279f6"
+													CommandParameter="{Binding}"
+													Command="{Binding $parent[UserControl]((vm:DoctorsMainViewModel)DataContext).RedactInfoAboutDoctor}"/>
+											<Button Content="Специалитет"
+													HorizontalContentAlignment="Center"
+													Foreground="Black"
+													Background="#b279f6"
+													Command="{Binding $parent[UserControl]((vm:DoctorsMainViewModel)DataContext).CheckSpecialty}"
+													CommandParameter="{Binding}"/>
+										</StackPanel>
+									</StackPanel>
+								</Grid>
+							</Border>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+			</StackPanel>
+		</StackPanel>
+		<StackPanel Grid.Column="1">
+			<StackPanel VerticalAlignment="Center"
+						Spacing="50">
+				<TextBlock Text="Фильтрация"
+					   FontWeight="Bold"
+					   FontFamily="Times New Roman"
+					   FontSize="16"
+					   HorizontalAlignment="Center"/>
+				<StackPanel>
+					<TextBlock Text="Поиск по:"
+					   FontWeight="Bold"
+					   FontFamily="Times New Roman"
+					   FontSize="14"
+					   HorizontalAlignment="Center"/>
+					<StackPanel Orientation="Horizontal"
+								HorizontalAlignment="Center"
+								Spacing="10">
+						<ComboBox ItemsSource="{Binding Filter}"
+								  SelectedItem="{Binding ChangedFilter}"
+								  SelectedIndex="0"
+								  Width="150"/>
+						<TextBox Text="{Binding TextFind}"
+								 Watermark="Введите текст"
+								 Width="200"
+								 Height="70"/>
+					</StackPanel>
+				</StackPanel>
+			</StackPanel>
+		</StackPanel>
+	</Grid>
 </UserControl>
