@@ -65,6 +65,18 @@ namespace HealthPatient.ViewModels
                 {
                     pageSwitcher = new CreateUserViewModel();
                 }
+                else if (MainWindowViewModel.Instance.PageSwitcherAdminPanel.GetType().Name == "DoctorsMainViewModel")
+                {
+                    pageSwitcher = new DoctorsMainViewModel();
+                }
+                else if (MainWindowViewModel.Instance.PageSwitcherAdminPanel.GetType().Name == "PatientsMainViewModel")
+                {
+                    pageSwitcher = new PatientsMainViewModel();
+                }
+                else if (MainWindowViewModel.Instance.PageSwitcherAdminPanel.GetType().Name == "AdminRightsViewModel")
+                {
+                    pageSwitcher = new AdminRightsViewModel();
+                }
             }
                 
         }
@@ -100,6 +112,11 @@ namespace HealthPatient.ViewModels
             MainWindowViewModel.Instance.Doctor = null;
             MainWindowViewModel.Instance.Patient = null;
             AdminMainViewModel.Instance.PageSwitcher = new AdminRightsViewModel();
+        }
+
+        public void GoBack()
+        {
+            MainWindowViewModel.Instance.PageSwitcher = new LoginViewModel();
         }
     }
 }

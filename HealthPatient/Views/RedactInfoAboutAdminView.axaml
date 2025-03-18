@@ -21,38 +21,52 @@
 				<StackPanel Orientation="Horizontal"
 					Spacing="2">
 					<TextBlock Text="Имя"/>
-					<TextBox Text="{Binding Admin.FirstName}"/>
+					<TextBox Text="{Binding Admin.FirstName}"
+							 Height="30"
+							 Width="300"/>
 				</StackPanel>
 				<StackPanel Orientation="Horizontal"
 							Spacing="2">
 					<TextBlock Text="Фамилия"/>
-					<TextBox Text="{Binding Admin.LastName}"/>
+					<TextBox Text="{Binding Admin.LastName}"
+							 Height="30"
+							 Width="300"/>
 				</StackPanel>
 				<StackPanel Orientation="Horizontal"
 							Spacing="2">
 					<TextBlock Text="Отчество"/>
-					<TextBox Text="{Binding Admin.Patronymic}"/>
+					<TextBox Text="{Binding Admin.Patronymic}"
+							 Height="30"
+							 Width="300"/>
 				</StackPanel>
 				<StackPanel Orientation="Horizontal"
 							Spacing="2">
 					<TextBlock Text="Логин"/>
-					<TextBox Text="{Binding Admin.Login}"/>
+					<TextBox Text="{Binding Admin.Login}"
+							 Height="30"
+							 Width="300"/>
 				</StackPanel>
 				<StackPanel Orientation="Horizontal"
 							Spacing="2">
 					<TextBlock Text="Пароль"/>
 					<TextBox Text="{Binding Admin.Password}"
-							 PasswordChar="*"/>
+							 PasswordChar="*"
+							 Height="30"
+							 Width="300"/>
 				</StackPanel>
 
 				<StackPanel Orientation="Horizontal"
 							Spacing="2">
 					<Button Content="Сохранить изменения"
 							HorizontalContentAlignment="Center"
+													Foreground="Black"
+													Background="#b279f6"
 							CommandParameter="{Binding Admin}"
 							Command="{Binding $parent[UserControl]((vm:RedactInfoAboutAdminViewModel)DataContext).Save}"/>
 					<Button Content="Удалить"
 							HorizontalContentAlignment="Center"
+													Foreground="Black"
+													Background="#b279f6"
 							CommandParameter="{Binding Admin}"
 							Command="{Binding $parent[UserControl]((vm:RedactInfoAboutAdminViewModel)DataContext).Delete}"/>
 				</StackPanel>

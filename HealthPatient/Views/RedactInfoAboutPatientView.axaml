@@ -21,43 +21,60 @@
 				<StackPanel Orientation="Horizontal"
 					Spacing="2">
 					<TextBlock Text="Имя"/>
-					<TextBox Text="{Binding Patient.FirstName}"/>
+					<TextBox Text="{Binding Patient.FirstName}"
+							 Height="30"
+							 Width="300"/>
 				</StackPanel>
 				<StackPanel Orientation="Horizontal"
 							Spacing="2">
 					<TextBlock Text="Фамилия"/>
-					<TextBox Text="{Binding Patient.LastName}"/>
+					<TextBox Text="{Binding Patient.LastName}"
+							 Height="30"
+							 Width="300"/>
 				</StackPanel>
 				<StackPanel Orientation="Horizontal"
 							Spacing="2">
 					<TextBlock Text="Предписания"/>
-					<TextBox Text="{Binding Patient.MedicalNotes}"/>
+					<TextBox Text="{Binding Patient.MedicalNotes}"
+							 Height="50"
+							 Width="300"
+							 TextWrapping="Wrap"/>
 				</StackPanel>
 				<StackPanel Orientation="Horizontal"
 							Spacing="2">
 					<TextBlock Text="Номер телефона"/>
-					<TextBox Text="{Binding Patient.ContactPhone}"/>
+					<TextBox Text="{Binding Patient.ContactPhone}"
+							 Height="30"
+							 Width="300"/>
 				</StackPanel>
 				<StackPanel Orientation="Horizontal"
 							Spacing="2">
 					<TextBlock Text="Логин"/>
-					<TextBox Text="{Binding Patient.Login}"/>
+					<TextBox Text="{Binding Patient.Login}"
+							 Height="30"
+							 Width="300"/>
 				</StackPanel>
 				<StackPanel Orientation="Horizontal"
 							Spacing="2">
 					<TextBlock Text="Пароль"/>
 					<TextBox Text="{Binding Patient.Password}"
-							 PasswordChar="*"/>
+							 PasswordChar="*"
+							 Height="30"
+							 Width="300"/>
 				</StackPanel>
 
 				<StackPanel Orientation="Horizontal"
 							Spacing="2">
 					<Button Content="Сохранить изменения"
 							HorizontalContentAlignment="Center"
+													Foreground="Black"
+													Background="#b279f6"
 							CommandParameter="{Binding Patient}"
 							Command="{Binding $parent[UserControl]((vm:RedactInfoAboutPatientViewModel)DataContext).Save}"/>
 					<Button Content="Удалить"
 							HorizontalContentAlignment="Center"
+													Foreground="Black"
+													Background="#b279f6"
 							CommandParameter="{Binding Patient}"
 							Command="{Binding $parent[UserControl]((vm:RedactInfoAboutPatientViewModel)DataContext).Delete}"/>
 				</StackPanel>

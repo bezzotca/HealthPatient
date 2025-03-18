@@ -128,20 +128,18 @@ namespace HealthPatient.ViewModels
                 }
                 else if(Login != "" && Password != "")
                 {
-                    if(Db.Administrators.FirstOrDefault(x => x.Login == Login && x.Password == Password) != null)
+                    if (Db.Administrators.FirstOrDefault(x => x.Login == Login && x.Password == Password) != null)
                     {
                         MainWindowViewModel.Instance.Admin = Db.Administrators.FirstOrDefault(x => x.Login == Login && x.Password == Password);
                         MainWindowViewModel.Instance.PageSwitcher = new AdminMainViewModel();
                     }
-                    else if(Db.Doctors.FirstOrDefault(x => x.Login == Login && x.Password == Password) != null)
+                    else if (Db.Doctors.FirstOrDefault(x => x.Login == Login && x.Password == Password) != null)
                     {
-                        MainWindowViewModel.Instance.Doctor = Db.Doctors.FirstOrDefault(x => x.Login == Login && x.Password == Password);
-                        MainWindowViewModel.Instance.PageSwitcher = new DoctorsMainViewModel();
+
                     }
-                    else if(Db.Patients.FirstOrDefault(x => x.Login == Login && x.Password == Password) != null)
+                    else if (Db.Patients.FirstOrDefault(x => x.Login == Login && x.Password == Password) != null)
                     {
-                        MainWindowViewModel.Instance.Patient = Db.Patients.FirstOrDefault(x => x.Login == Login && x.Password == Password);
-                        MainWindowViewModel.Instance.PageSwitcher = new PatientsMainViewModel();
+
                     }
                     else
                     {

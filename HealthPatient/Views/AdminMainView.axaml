@@ -9,7 +9,7 @@
 		<SplitView IsPaneOpen ="True" DisplayMode="Inline">
 		<SplitView.Pane >
 			<StackPanel Background="#423189">
-				<StackPanel Spacing="40"
+				<StackPanel Spacing="30"
 					HorizontalAlignment="Center">
 					<TextBlock Text="Панель администратора"
 							   FontWeight="Bold"
@@ -20,7 +20,7 @@
 							   HorizontalAlignment="Center"/>
 				</StackPanel>
 				<Border BorderBrush="#3e0b74" BorderThickness="0 4 0 0">
-					<StackPanel Spacing="70"
+					<StackPanel Spacing="60"
 								HorizontalAlignment="Center"
 								VerticalAlignment="Center"
 								Margin="0,70">
@@ -74,6 +74,13 @@
 								Background="Transparent"
 								FontSize="20"
 								Command="{Binding CheckAllLoyalty}"/>
+						<Button Content="Назад"
+								Width="200"
+								HorizontalContentAlignment="Center"
+								Foreground="White"
+								Background="Transparent"
+								FontSize="20"
+								Command="{Binding GoBack}"/>
 					</StackPanel>
 				</Border>
 			</StackPanel>

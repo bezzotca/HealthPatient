@@ -9,25 +9,49 @@
 	<StackPanel HorizontalAlignment="Center"
 				VerticalAlignment="Center">
 		<StackPanel Spacing="20">
-			<TextBlock Text="{Binding HelloMessage}"/>
+			<TextBlock Text="{Binding HelloMessage}"
+					   FontSize="24"
+						   FontFamily="Times New Roman"
+						   FontWeight="Bold"
+						   HorizontalAlignment="Center"/>
 			<StackPanel Orientation="Horizontal"
 						Spacing="3">
-				<TextBlock Text="{Binding MrMrs}"/>
-				<TextBlock Text="{Binding Admin.FirstName}"/>
+				<TextBlock Text="{Binding MrMrs}"
+						   FontSize="24"
+						   FontFamily="Times New Roman"
+						   FontWeight="Normal"
+						   HorizontalAlignment="Center"/>
+				<TextBlock Text="{Binding Admin.FirstName}"
+						   FontSize="24"
+						   FontFamily="Times New Roman"
+						   FontWeight="Normal"
+						   HorizontalAlignment="Center"/>
 			</StackPanel>
 			<TextBlock Text="Выберите действие"
-					   HorizontalAlignment="Center"/>
+					   FontSize="24"
+						   FontFamily="Times New Roman"
+						   FontWeight="Bold"
+						   HorizontalAlignment="Center"/>
 			<StackPanel Orientation="Horizontal"
 						Spacing="10">
 				<Button Content="Редактировать профиль"
 						HorizontalAlignment="Center"
-						Command="{Binding Redact}"/>
+						Command="{Binding Redact}"
+						HorizontalContentAlignment="Center"
+													Foreground="Black"
+													Background="#b279f6"/>
 				<Button Content="Добавить новость"
 						HorizontalAlignment="Center"
-						Command="{Binding AddNews}"/>
+						Command="{Binding AddNews}"
+						HorizontalContentAlignment="Center"
+													Foreground="Black"
+													Background="#b279f6"/>
 				<Button Content="Зарегистрировать пользователя"
 						HorizontalAlignment="Center"
-						Command="{Binding AddUser}"/>
+						Command="{Binding AddUser}"
+						HorizontalContentAlignment="Center"
+													Foreground="Black"
+													Background="#b279f6"/>
 			</StackPanel>
 		</StackPanel>
 	</StackPanel>

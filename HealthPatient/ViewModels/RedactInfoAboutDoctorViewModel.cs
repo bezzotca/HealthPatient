@@ -22,13 +22,14 @@ namespace HealthPatient.ViewModels
             doctor.UpdatedAt = DateTime.Now;
             Db.Doctors.Update(doctor);
             Db.SaveChanges();
+            MainWindowViewModel.Instance.PageSwitcherAdminPanel = new DoctorsMainViewModel();
         }
 
         public void Delete(Doctor doctor)
         {
             Db.Doctors.Remove(doctor);
             Db.SaveChanges();
-            MainWindowViewModel.Instance.PageSwitcher = new AdminMainViewModel();
+            MainWindowViewModel.Instance.PageSwitcherAdminPanel = new DoctorsMainViewModel();
         }
     }
 }

@@ -14,8 +14,11 @@ namespace HealthPatient.ViewModels
         [ObservableProperty] Doctor doctor = MainWindowViewModel.Instance.Doctor;
         [ObservableProperty] Patient patient = MainWindowViewModel.Instance.Patient;
         [ObservableProperty] List<Visit> visits;
+        [ObservableProperty] string sum;
+        [ObservableProperty] bool isVisible;
         public CheckVisitsViewModel()
         {
+            isVisible = false;
             if (doctor != null)
             {
                 visits = Db.Visits.Include(x => x.Patient).Include(x => x.Schedule).Include(x => x.Doctor).Where(x => x.DoctorId == doctor.DoctorId).ToList();
@@ -26,7 +29,9 @@ namespace HealthPatient.ViewModels
             }
             else if(doctor == null && patient == null)
             {
+                isVisible = true;
                 visits = Db.Visits.Include(x => x.Patient).Include(x => x.Schedule).Include(x => x.Doctor).ToList();
+                sum = Db.Visits.Select(x => x.Cost).Sum().ToString();
             }
             
         }

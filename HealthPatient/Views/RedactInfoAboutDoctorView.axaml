@@ -54,10 +54,14 @@
 							Spacing="2">
 					<Button Content="Сохранить изменения"
 							HorizontalContentAlignment="Center"
+													Foreground="Black"
+													Background="#b279f6"
 							CommandParameter="{Binding Doctor}"
 							Command="{Binding $parent[UserControl]((vm:RedactInfoAboutDoctorViewModel)DataContext).Save}"/>
 					<Button Content="Удалить"
 							HorizontalContentAlignment="Center"
+													Foreground="Black"
+													Background="#b279f6"
 							CommandParameter="{Binding Doctor}"
 							Command="{Binding $parent[UserControl]((vm:RedactInfoAboutDoctorViewModel)DataContext).Delete}"/>
 				</StackPanel>

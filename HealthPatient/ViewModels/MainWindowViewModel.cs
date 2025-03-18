@@ -15,7 +15,7 @@ namespace HealthPatient.ViewModels
         public MainWindowViewModel() 
         {
             Instance = this;
-            PageSwitcher = new LoginViewModel();
+            PageSwitcher = new SplashScreenViewModel();
         }
 
         partial void OnPageSwitcherAdminPanelChanged(ViewModelBase value)

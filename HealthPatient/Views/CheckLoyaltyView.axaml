@@ -12,6 +12,9 @@
 					VerticalAlignment="Center">
 			<StackPanel Spacing="40">
 				<TextBlock Text="Лояльность"
+						   FontSize="24"
+						   FontFamily="Times New Roman"
+						   FontWeight="Bold"
 						   HorizontalAlignment="Center"
 						   VerticalAlignment="Center"/>
 				<StackPanel>
