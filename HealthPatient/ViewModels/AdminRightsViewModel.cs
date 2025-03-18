@@ -51,7 +51,7 @@ namespace HealthPatient.ViewModels
         }
         public void AddUser()
         {
-            MainWindowViewModel.Instance.PageSwitcherAdminPanel = new RedactInfoAboutAdminViewModel();
+            MainWindowViewModel.Instance.PageSwitcherAdminPanel = new CreateUserViewModel();
         }
         public void AddNews()
         {
