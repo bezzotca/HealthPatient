@@ -32,6 +32,7 @@
     <PackageReference Include="Avalonia.Xaml.Interactions" Version="11.0.5" />
     <PackageReference Include="Avalonia.Xaml.Interactions.Draggable" Version="11.1.0.5" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
+    <PackageReference Include="itext7" Version="9.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -41,5 +42,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.2" />
+    <PackageReference Include="QuestPDF" Version="2025.1.6" />
   </ItemGroup>
 </Project>

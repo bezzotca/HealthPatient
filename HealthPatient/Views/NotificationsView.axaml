@@ -83,7 +83,9 @@
 			</StackPanel>
 		</StackPanel>
 		<StackPanel Grid.Column="1">
-
+			<StackPanel IsVisible="{Binding IsVisibleButton}">
+				<Button Content="Назад" Command="{Binding GoBack}"/>
+			</StackPanel>
 		</StackPanel>
 	</Grid>
 </UserControl>

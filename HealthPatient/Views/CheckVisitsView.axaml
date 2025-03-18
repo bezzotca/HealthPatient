@@ -89,6 +89,13 @@
 			</StackPanel>
 		</StackPanel>
 		<StackPanel Grid.Column="1">
+			<Button Content="Назад"
+													HorizontalContentAlignment="Center"
+													Foreground="Black"
+													Background="#b279f6"
+													Command="{Binding GoBack}"
+											HorizontalAlignment="Center"
+					IsVisible="{Binding IsVisibleButton}"/>
 			<StackPanel Orientation="Horizontal"
 						Spacing="2"
 						IsVisible="{Binding IsVisible}"
@@ -102,6 +109,22 @@
 						   FontFamily="Times New Roman"
 						   FontWeight="Normal"/>
 			</StackPanel>
+			<StackPanel Orientation="Horizontal"
+						Spacing="2"
+						IsVisible="{Binding IsVisible}"
+						HorizontalAlignment="Center">
+				<TextBlock Text="Всего приёмов"
+						   FontSize="17"
+						   FontFamily="Times New Roman"
+						   FontWeight="Normal"/>
+				<TextBlock Text="{Binding Count}"
+						   FontSize="17"
+						   FontFamily="Times New Roman"
+						   FontWeight="Normal"/>
+			</StackPanel>
+			<Button Content="Отправить на печать"
+						Command="{Binding GeneratePdf}"/>
+			<TextBlock Text="{Binding Msg}"/>
 		</StackPanel>
 	</Grid>
 </UserControl>

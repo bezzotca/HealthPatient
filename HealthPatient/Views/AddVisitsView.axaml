@@ -1,0 +1,69 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:vm="using:HealthPatient.ViewModels"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="HealthPatient.Views.AddVisitsView"
+			 x:DataType="vm:AddVisitsViewModel">
+	<StackPanel HorizontalAlignment="Center"
+				VerticalAlignment="Center"
+				Spacing="30">
+		<StackPanel >
+			<TextBlock Text="Запись на приём"
+					   FontFamily="Times New Roman"
+					   FontWeight="Bold"
+					   FontSize="32"
+					   HorizontalAlignment="Center"/>
+		</StackPanel>
+		<StackPanel Spacing="10">
+			<StackPanel Orientation="Horizontal">
+				<TextBlock Text="Выберите врача"/>
+				<ComboBox ItemsSource="{Binding Doctors}" SelectedItem="{Binding Doctor}">
+					<ComboBox.ItemTemplate>
+						<DataTemplate>
+							<StackPanel Orientation="Horizontal"
+										Spacing="3">
+								<TextBlock Text="{Binding LastName}"/>
+								<TextBlock Text="{Binding FirstName}"/>
+								<TextBlock Text="{Binding Patronymic}"/>
+							</StackPanel>
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+				</ComboBox>
+				
+			</StackPanel>
+			<StackPanel Orientation="Horizontal">
+				<TextBlock Text="Выберите день"/>
+				<DatePicker SelectedDate="{Binding DateTimeOffset}"/>
+			</StackPanel>
+			<StackPanel Orientation="Horizontal">
+				<TextBlock Text="Выберите время"/>
+				<TimePicker SelectedTime="{Binding TimeSpan}"/>
+			</StackPanel>
+			<StackPanel IsVisible="{Binding TimeSpan}"
+						Spacing="10">
+				<TextBlock Text="{Binding Schedule.StartTime, StringFormat= Начало рабочего дня : {0}}"/>
+				<TextBlock Text="{Binding Schedule.EndTime, StringFormat= Конец рабочего дня: {0}}"/>
+				<StackPanel Orientation="Horizontal">
+					<TextBlock Text="Выберите услугу"/>
+					<ComboBox ItemsSource="{Binding Services}" SelectedItem="{Binding ServicePrice}">
+						<ComboBox.ItemTemplate>
+							<DataTemplate>
+								<StackPanel>
+									<TextBlock Text="{Binding Service.Name}"/>
+								</StackPanel>
+							</DataTemplate>
+						</ComboBox.ItemTemplate>
+					</ComboBox>
+				</StackPanel>
+				<StackPanel IsVisible="{Binding IsVisibleServicePrice}">
+					<TextBlock Text="{Binding ServicePrice.Price}"/>
+					<TextBlock Text="{Binding ServicePrice.Service.Description}"/>
+				</StackPanel>
+			</StackPanel>
+			<Button Content="Записаться"
+					Command="{Binding AddVisit}"/>
+		</StackPanel>
+	</StackPanel>
+</UserControl>

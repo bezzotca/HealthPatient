@@ -13,6 +13,7 @@ namespace HealthPatient.ViewModels
     {
         [ObservableProperty] Doctor doctor;
         [ObservableProperty] List<Review> reviews;
+        [ObservableProperty] bool isVisibleButton;
         public CheckReviewsViewModel()
         {
             doctor = MainWindowViewModel.Instance.Doctor;
@@ -24,6 +25,15 @@ namespace HealthPatient.ViewModels
             {
                 reviews = Db.Reviews.Include(x => x.Doctor).Include(x => x.Patient).ToList();
             }
+            if (MainWindowViewModel.Instance.PrevPage == "DoctorWorkViewModel")
+            {
+                isVisibleButton = true;
+            }
+        }
+
+        public void GoBack()
+        {
+            MainWindowViewModel.Instance.PageSwitcher = new DoctorWorkViewModel();
         }
     }
 }

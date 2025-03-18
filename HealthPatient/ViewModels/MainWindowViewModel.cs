@@ -10,6 +10,7 @@ namespace HealthPatient.ViewModels
         [ObservableProperty] public Administrator admin;
         [ObservableProperty] public Patient patient;
         [ObservableProperty] public Doctor doctor;
+        [ObservableProperty] string prevPage;
 
         public static MainWindowViewModel Instance { get; set; }
         public MainWindowViewModel() 

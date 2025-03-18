@@ -23,7 +23,7 @@
 						CornerRadius="5"
 						Width="400"
 						Height="700">
-					<StackPanel Spacing="20"
+					<StackPanel Spacing="10"
 								Margin="30,30">
 						<ComboBox ItemsSource="{Binding Genders}"
 								  SelectedItem="{Binding SelectedGender}">
@@ -100,6 +100,8 @@
 								HorizontalContentAlignment="Center"
 								Width="200"
 								Command="{Binding CreateUser}"/>
+						<TextBlock Text="{Binding Message}"
+								   Foreground="#ff181e"/>
 					</StackPanel>
 				</Border>
 			</StackPanel>

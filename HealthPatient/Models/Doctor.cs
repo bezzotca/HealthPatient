@@ -4,21 +4,21 @@ using System.Collections.Generic;
 
 namespace HealthPatient.Models;
 
-public partial class Doctor
-{
-    public int DoctorId { get; set; }
+    public partial class Doctor
+    {
+        public int DoctorId { get; set; }
 
-    public string? FirstName { get; set; }
+        public string? FirstName { get; set; }
 
-    public string? LastName { get; set; }
+        public string? LastName { get; set; }
 
-    public string? Patronymic { get; set; }
+        public string? Patronymic { get; set; }
 
-    public string? Bio { get; set; }
+        public string? Bio { get; set; }
 
-    public DateTime? CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
 
-    public DateTime? UpdatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
     public string Login { get; set; } = null!;
 

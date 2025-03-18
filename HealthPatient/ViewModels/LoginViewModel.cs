@@ -135,11 +135,13 @@ namespace HealthPatient.ViewModels
                     }
                     else if (Db.Doctors.FirstOrDefault(x => x.Login == Login && x.Password == Password) != null)
                     {
-
+                        MainWindowViewModel.Instance.Doctor = Db.Doctors.FirstOrDefault(x => x.Login == Login && x.Password == Password);
+                        MainWindowViewModel.Instance.PageSwitcher = new DoctorWorkViewModel();
                     }
                     else if (Db.Patients.FirstOrDefault(x => x.Login == Login && x.Password == Password) != null)
                     {
-
+                        MainWindowViewModel.Instance.Patient = Db.Patients.FirstOrDefault(x => x.Login == Login && x.Password == Password);
+                        MainWindowViewModel.Instance.PageSwitcher = new PatientWorkViewModel();
                     }
                     else
                     {

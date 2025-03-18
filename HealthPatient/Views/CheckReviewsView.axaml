@@ -11,7 +11,12 @@
 					VerticalAlignment="Center"
 					HorizontalAlignment="Center">
 			<StackPanel Spacing="20">
-				<TextBlock Text="Отзывы"/>
+				<TextBlock Text="Отзывы"
+						   FontSize="24"
+						   FontFamily="Times New Roman"
+						   FontWeight="Bold"
+						   HorizontalAlignment="Center"
+						   VerticalAlignment="Center"/>
 				<ListBox ItemsSource="{Binding Reviews}"
 						 Height="700"
 						 Width="350"
@@ -54,6 +59,15 @@
 						</DataTemplate>
 					</ListBox.ItemTemplate>
 				</ListBox>
+			</StackPanel>
+		</StackPanel>
+		<StackPanel Grid.Column="1" IsVisible="{Binding IsVisibleButton}">
+			<StackPanel>
+				<Button Content="Назад"
+													HorizontalContentAlignment="Center"
+													Foreground="Black"
+													Background="#b279f6"
+													Command="{Binding GoBack}"/>
 			</StackPanel>
 		</StackPanel>
 	</Grid>

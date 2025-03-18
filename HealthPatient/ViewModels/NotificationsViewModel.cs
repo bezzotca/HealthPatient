@@ -13,11 +13,16 @@ namespace HealthPatient.ViewModels
     {
         [ObservableProperty] List<Notification> notifications;
         [ObservableProperty] Patient patient;
+        [ObservableProperty] bool isVisibleButton = false;
 
         public NotificationsViewModel()
         {
             patient = MainWindowViewModel.Instance.Patient;
             notifications = Db.Notifications.Include(x=>x.Doctor).Include(x=>x.Patient).Where(x=>x.PatientId == patient.PatientId).ToList();
+            if(MainWindowViewModel.Instance.PrevPage == "PatientWorkViewModel")
+            {
+                isVisibleButton = true;
+            }
         }
 
         public void Save(Notification not)
@@ -32,6 +37,10 @@ namespace HealthPatient.ViewModels
             Db.Notifications.Update(not);
             Db.SaveChanges();
             MainWindowViewModel.Instance.PageSwitcherAdminPanel = new NotificationsViewModel();
+        }
+        public void GoBack()
+        {
+            MainWindowViewModel.Instance.PageSwitcher = new PatientWorkViewModel();
         }
     }
 }
