@@ -20,6 +20,7 @@ namespace HealthPatient.ViewModels
         [ObservableProperty] Doctor doctor = MainWindowViewModel.Instance.Doctor;
         [ObservableProperty] Patient patient = MainWindowViewModel.Instance.Patient;
         [ObservableProperty] List<Visit> visits;
+        [ObservableProperty] List<Visit> visits0;
         [ObservableProperty] string sum;
         [ObservableProperty] string count;
         [ObservableProperty] string msg;
@@ -35,6 +36,7 @@ namespace HealthPatient.ViewModels
             if (doctor != null)
             {
                 visits = Db.Visits.Include(x => x.Patient).Include(x => x.Schedule).Include(x => x.Doctor).Where(x => x.DoctorId == doctor.DoctorId).ToList();
+                visits0 = Db.Visits.Include(x => x.Patient).Include(x => x.Schedule).Include(x => x.Doctor).Where(x => x.DoctorId == doctor.DoctorId).ToList();
             }
             else if(patient != null)
             {
@@ -54,9 +56,9 @@ namespace HealthPatient.ViewModels
             filter = new List<string>
             {
                 "Без фильтра",
-                "Фамилия",
-                "Имя",
-                "Отчество",
+                "Диагноз",
+                "Статус",
+                "Рекоммендации",
             };
         }
 
@@ -255,7 +257,7 @@ namespace HealthPatient.ViewModels
         {
             if (ChangedFilter == "Без фильтра")
             {
-
+                Visits = Db.Visits.ToList();
             }
             else if (ChangedFilter != "Без фильтра")
             {
@@ -267,14 +269,17 @@ namespace HealthPatient.ViewModels
                 {
                     switch (ChangedFilter)
                     {
-                        case "Фамилия":
-
+                        case "Диагноз":
+                            Visits = visits0;
+                            Visits = Db.Visits.Where(x=>x.Diagnosis.Contains(value)).ToList();
                             break;
-                        case "Имя":
-
+                        case "Статус":
+                            Visits = visits0;
+                            Visits = Db.Visits.Where(x => x.Status.Contains(value)).ToList();
                             break;
-                        case "Отчество":
-
+                        case "Рекоммендации":
+                            Visits = visits0;
+                            Visits = Db.Visits.Where(x => x.Prescriptions.Contains(value)).ToList();
                             break;
                     }
                 }
@@ -298,14 +303,17 @@ namespace HealthPatient.ViewModels
                 {
                     switch (value)
                     {
-                        case "Фамилия":
-
+                        case "Диагноз":
+                            Visits = visits0;
+                            Visits = Db.Visits.Where(x => x.Diagnosis.Contains(value)).ToList();
                             break;
-                        case "Имя":
-
+                        case "Статус":
+                            Visits = visits0;
+                            Visits = Db.Visits.Where(x => x.Status.Contains(value)).ToList();
                             break;
-                        case "Отчество":
-
+                        case "Рекоммендации":
+                            Visits = visits0;
+                            Visits = Db.Visits.Where(x => x.Prescriptions.Contains(value)).ToList();
                             break;
                     }
                 }
