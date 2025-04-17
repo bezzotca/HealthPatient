@@ -14,6 +14,7 @@ namespace HealthPatient.ViewModels
     {
         [ObservableProperty] Patient patient;
         [ObservableProperty] List<LoyaltyPointsHistory> loyalty;
+        [ObservableProperty] List<LoyaltyPointsHistory> loyalty0;
         [ObservableProperty] List<string> filter;
         [ObservableProperty] string changedFilter;
         [ObservableProperty] string textFind;
@@ -24,6 +25,7 @@ namespace HealthPatient.ViewModels
             if(patient != null)
             {
                 loyalty = Db.LoyaltyPointsHistories.Include(x => x.Visit).Include(x => x.Patient).Where(x => x.PatientId == patient.PatientId).ToList();
+                loyalty0 = Db.LoyaltyPointsHistories.Include(x => x.Visit).Include(x => x.Patient).Where(x => x.PatientId == patient.PatientId).ToList();
             }
             else if(patient == null && MainWindowViewModel.Instance.Doctor == null)
             {
@@ -32,9 +34,7 @@ namespace HealthPatient.ViewModels
             filter = new List<string>
             {
                 "Без фильтра",
-                "Фамилия",
-                "Имя",
-                "Отчество",
+                "Причина",
             };
         }
 
@@ -47,7 +47,7 @@ namespace HealthPatient.ViewModels
         {
             if (ChangedFilter == "Без фильтра")
             {
-
+                Loyalty = loyalty0;
             }
             else if (ChangedFilter != "Без фильтра")
             {
@@ -59,14 +59,9 @@ namespace HealthPatient.ViewModels
                 {
                     switch (ChangedFilter)
                     {
-                        case "Фамилия":
-
-                            break;
-                        case "Имя":
-
-                            break;
-                        case "Отчество":
-
+                        case "Причина":
+                            Loyalty = loyalty0;
+                            Loyalty = Db.LoyaltyPointsHistories.Where(x=>x.Reason.Contains(value)).ToList();
                             break;
                     }
                 }
@@ -75,25 +70,23 @@ namespace HealthPatient.ViewModels
 
         partial void OnChangedFilterChanged(string value)
         {
-            if (value == "Без фильтра")
+            if (ChangedFilter == "Без фильтра")
             {
-
+                Loyalty = loyalty0;
             }
-            else if (value != "Без фильтра")
+            else if (ChangedFilter != "Без фильтра")
             {
-                if (TextFind == "" || TextFind == null)
+                if (value == "" || value == null)
                 {
 
                 }
-                else if (TextFind != "")
+                else if (value != "")
                 {
-                    switch (value)
+                    switch (ChangedFilter)
                     {
-                        case "Фамилия":
-                            break;
-                        case "Имя":
-                            break;
-                        case "Отчество":
+                        case "Причина":
+                            Loyalty = loyalty0;
+                            Loyalty = Db.LoyaltyPointsHistories.Where(x => x.Reason.Contains(value)).ToList();
                             break;
                     }
                 }
