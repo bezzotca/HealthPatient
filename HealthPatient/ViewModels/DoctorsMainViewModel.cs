@@ -99,36 +99,42 @@ namespace HealthPatient.ViewModels
         public void CheckVisits(Doctor doctor)
         {
             MainWindowViewModel.Instance.Doctor = doctor;
+            MainWindowViewModel.Instance.PrevPage = "DoctorsMainViewModel";
             MainWindowViewModel.Instance.PageSwitcherAdminPanel = new CheckVisitsViewModel();
         }
 
         public void RedactInfoAboutDoctor(Doctor doctor)
         {
             MainWindowViewModel.Instance.Doctor = doctor;
+            MainWindowViewModel.Instance.PrevPage = "DoctorsMainViewModel";
             MainWindowViewModel.Instance.PageSwitcherAdminPanel = new RedactInfoAboutDoctorViewModel();
         }
 
         public void CheckAchievements(Doctor doctor)
         {
             MainWindowViewModel.Instance.Doctor = doctor;
+            MainWindowViewModel.Instance.PrevPage = "DoctorsMainViewModel";
             MainWindowViewModel.Instance.PageSwitcherAdminPanel = new AchievementsViewModel();
         }
         
         public void CheckSpecialty(Doctor doctor)
         {
             MainWindowViewModel.Instance.Doctor = doctor;
+            MainWindowViewModel.Instance.PrevPage = "DoctorsMainViewModel";
             MainWindowViewModel.Instance.PageSwitcherAdminPanel = new CheckSpecialtyViewModel();
         }
         
         public void CheckReviews(Doctor doctor)
         {
             MainWindowViewModel.Instance.Doctor = doctor;
+            MainWindowViewModel.Instance.PrevPage = "DoctorsMainViewModel";
             MainWindowViewModel.Instance.PageSwitcherAdminPanel = new CheckReviewsViewModel();
         }
 
         public void CheckSchedule(Doctor doctor)
         {
             MainWindowViewModel.Instance.Doctor = doctor;
+            MainWindowViewModel.Instance.PrevPage = "DoctorsMainViewModel";
             MainWindowViewModel.Instance.PageSwitcherAdminPanel = new CheckScheduleViewModel();
         }
 

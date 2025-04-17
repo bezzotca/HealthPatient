@@ -9,6 +9,9 @@ using System.Linq;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
+using Avalonia.Media.TextFormatting;
+using System.Diagnostics;
+using Tmds.DBus.Protocol;
 
 namespace HealthPatient.ViewModels
 {
@@ -22,6 +25,9 @@ namespace HealthPatient.ViewModels
         [ObservableProperty] string msg;
         [ObservableProperty] bool isVisible;
         [ObservableProperty] bool isVisibleButton;
+        [ObservableProperty] List<string> filter;
+        [ObservableProperty] string changedFilter;
+        [ObservableProperty] string textFind;
         public CheckVisitsViewModel()
         {
             isVisible = false;
@@ -37,14 +43,21 @@ namespace HealthPatient.ViewModels
             else if(doctor == null && patient == null)
             {
                 isVisible = true;
-                visits = Db.Visits.Include(x => x.Patient).Include(x => x.Schedule).Include(x => x.Doctor).ToList();
+                visits = Db.Visits.Include(x => x.Patient).Include(x => x.Schedule).Include(x => x.Doctor).ThenInclude(x=>x.ServicePrices).ToList();
                 sum = Db.Visits.Select(x => x.Cost).Sum().ToString();
                 count = Db.Visits.ToList().Count().ToString();
             }
-            if(MainWindowViewModel.Instance.PrevPage == "DoctorWorkViewModel")
+            if(MainWindowViewModel.Instance.PrevPage == "DoctorWorkViewModel" || MainWindowViewModel.Instance.PrevPage == "PatientWorkViewModel")
             {
                 isVisibleButton = true;
             }
+            filter = new List<string>
+            {
+                "Без фильтра",
+                "Фамилия",
+                "Имя",
+                "Отчество",
+            };
         }
 
         public void Save(Visit visit)
@@ -65,7 +78,14 @@ namespace HealthPatient.ViewModels
 
         public void GoBack()
         {
-            MainWindowViewModel.Instance.PageSwitcher = new DoctorWorkViewModel();
+            if(MainWindowViewModel.Instance.PrevPage == "DoctorWorkViewModel")
+            {
+                MainWindowViewModel.Instance.PageSwitcher = new DoctorWorkViewModel();
+            }
+            else if(MainWindowViewModel.Instance.PrevPage == "PatientWorkViewModel")
+            {
+                MainWindowViewModel.Instance.PageSwitcher = new PatientWorkViewModel();
+            }
         }
 
         [RelayCommand]
@@ -80,7 +100,7 @@ namespace HealthPatient.ViewModels
             }
             catch (Exception ex)
             {
-                // Обработка ошибок
+                Msg = $"Ошибка при генерации PDF: {ex.Message}";
             }
         }
 
@@ -114,6 +134,7 @@ namespace HealthPatient.ViewModels
                                 columns.RelativeColumn();
                                 columns.RelativeColumn();
                                 columns.RelativeColumn();
+                                columns.RelativeColumn();
                             });
 
                             table.Header(header =>
@@ -121,6 +142,7 @@ namespace HealthPatient.ViewModels
                                 header.Cell().Text("Дата");
                                 header.Cell().Text("Пациент");
                                 header.Cell().Text("Врач");
+                                header.Cell().Text("Диагноз");
                                 header.Cell().Text("Стоимость");
 
                                 header.Cell().ColumnSpan(4)
@@ -132,6 +154,7 @@ namespace HealthPatient.ViewModels
                                 table.Cell().Text(visit.VisitDate?.ToString("dd.MM.yyyy"));
                                 table.Cell().Text(visit.Patient?.FirstName);
                                 table.Cell().Text(visit.Doctor?.FirstName);
+                                table.Cell().Text(visit.Diagnosis);
                                 table.Cell().Text($"{visit.Cost?.ToString("N2")} ₽");
                             }
                         });
@@ -149,11 +172,144 @@ namespace HealthPatient.ViewModels
 
         public string GetPdfFileName()
         {
+            // Определяем базовую директорию проекта
+            string baseDirectory = AppContext.BaseDirectory;
+            string reportsDirectory = Path.Combine(baseDirectory, @"..\..\..\Assets\Reports");
+
+            // Создаем подпапку для пациента или врача
+            string userFolder = Doctor != null ? $"Врач_{Doctor.LastName}" :
+                                Patient != null ? $"Пациент_{Patient.LastName}" :
+                                null;
+
+            if (!string.IsNullOrEmpty(userFolder))
+            {
+                reportsDirectory = Path.Combine(reportsDirectory, userFolder);
+            }
+
+            // Создаем папку, если она не существует
+            Directory.CreateDirectory(reportsDirectory);
+
+            // Генерируем имя файла
             var prefix = Doctor != null ? $"Врач_{Doctor.LastName}" :
                        Patient != null ? $"Пациент_{Patient.LastName}" :
                        "Все_визиты";
 
-            return $"{prefix}_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
+            string fileName = $"{prefix}_{DateTime.Now:yyyyMMdd_HHmmss}.pdf";
+
+            // Возвращаем полный путь к файлу
+            return Path.Combine(reportsDirectory, fileName);
+        }
+
+        [RelayCommand]
+        public void OpenFolder()
+        {
+            try
+            {
+                // Получаем путь к папке
+                string folderPath = GetFolderPath();
+
+                // Проверяем, существует ли папка
+                if (Directory.Exists(folderPath))
+                {
+                    // Открываем папку через проводник Windows
+                    Process.Start(new ProcessStartInfo
+                    {
+                        FileName = folderPath,
+                        UseShellExecute = true,
+                        Verb = "open"
+                    });
+                }
+                else
+                {
+                    Msg = "Папка не существует.";
+                }
+            }
+            catch (Exception ex)
+            {
+                Msg = $"Ошибка при открытии папки: {ex.Message}";
+            }
+        }
+
+        private string GetFolderPath()
+        {
+            // Определяем базовую директорию проекта
+            string baseDirectory = AppContext.BaseDirectory;
+            string reportsDirectory = Path.Combine(baseDirectory, @"..\..\..\Assets\Reports");
+
+            // Если пользователь - пациент или врач, открываем его папку
+            if (Doctor != null)
+            {
+                return Path.Combine(reportsDirectory, $"Врач_{Doctor.LastName}");
+            }
+            else if (Patient != null)
+            {
+                return Path.Combine(reportsDirectory, $"Пациент_{Patient.LastName}");
+            }
+            else
+            {
+                // Если пользователь - администратор, открываем общую папку Reports
+                return reportsDirectory;
+            }
+        }
+        partial void OnTextFindChanged(string value)
+        {
+            if (ChangedFilter == "Без фильтра")
+            {
+
+            }
+            else if (ChangedFilter != "Без фильтра")
+            {
+                if (value == "" || value == null)
+                {
+
+                }
+                else if (value != "")
+                {
+                    switch (ChangedFilter)
+                    {
+                        case "Фамилия":
+
+                            break;
+                        case "Имя":
+
+                            break;
+                        case "Отчество":
+
+                            break;
+                    }
+                }
+            }
+        }
+
+        
+        partial void OnChangedFilterChanged(string value)
+        {
+            if (value == "Без фильтра")
+            {
+
+            }
+            else if (value != "Без фильтра")
+            {
+                if (TextFind == "" || TextFind == null)
+                {
+
+                }
+                else if (TextFind != "")
+                {
+                    switch (value)
+                    {
+                        case "Фамилия":
+
+                            break;
+                        case "Имя":
+
+                            break;
+                        case "Отчество":
+
+                            break;
+                    }
+                }
+            }
         }
     }
 }

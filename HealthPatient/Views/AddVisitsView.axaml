@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="HealthPatient.Views.AddVisitsView"
-			 x:DataType="vm:AddVisitsViewModel">
+			 x:DataType="vm:AddVisitsViewModel"
+			 Background="#016D8A">
 	<StackPanel HorizontalAlignment="Center"
 				VerticalAlignment="Center"
 				Spacing="30">
@@ -14,19 +15,36 @@
 					   FontFamily="Times New Roman"
 					   FontWeight="Bold"
 					   FontSize="32"
-					   HorizontalAlignment="Center"/>
+					   HorizontalAlignment="Center"
+					    Foreground="White"/>
 		</StackPanel>
 		<StackPanel Spacing="10">
 			<StackPanel Orientation="Horizontal">
-				<TextBlock Text="Выберите врача"/>
-				<ComboBox ItemsSource="{Binding Doctors}" SelectedItem="{Binding Doctor}">
+				<TextBlock Text="Выберите врача "
+						    FontFamily="Times New Roman"
+					   FontWeight="Bold"
+					   FontSize="17"
+						    Foreground="White"/>
+				<ComboBox ItemsSource="{Binding Doctors}" SelectedItem="{Binding Doctor}" Background="White">
 					<ComboBox.ItemTemplate>
 						<DataTemplate>
 							<StackPanel Orientation="Horizontal"
 										Spacing="3">
-								<TextBlock Text="{Binding LastName}"/>
-								<TextBlock Text="{Binding FirstName}"/>
-								<TextBlock Text="{Binding Patronymic}"/>
+								<TextBlock Text="{Binding LastName}"
+										    FontFamily="Times New Roman"
+					   FontWeight="Bold"
+					   FontSize="17"
+						    Foreground="Black"/>
+								<TextBlock Text="{Binding FirstName}"
+										    FontFamily="Times New Roman"
+					   FontWeight="Bold"
+					   FontSize="17"
+						    Foreground="White"/>
+								<TextBlock Text="{Binding Patronymic}"
+										    FontFamily="Times New Roman"
+					   FontWeight="Bold"
+					   FontSize="17"
+						    Foreground="White"/>
 							</StackPanel>
 						</DataTemplate>
 					</ComboBox.ItemTemplate>
@@ -34,24 +52,48 @@
 				
 			</StackPanel>
 			<StackPanel Orientation="Horizontal">
-				<TextBlock Text="Выберите день"/>
+				<TextBlock Text="Выберите день"
+						    FontFamily="Times New Roman"
+					   FontWeight="Bold"
+					   FontSize="17"
+						    Foreground="White"/>
 				<DatePicker SelectedDate="{Binding DateTimeOffset}"/>
 			</StackPanel>
 			<StackPanel Orientation="Horizontal">
-				<TextBlock Text="Выберите время"/>
+				<TextBlock Text="Выберите время"
+						    FontFamily="Times New Roman"
+					   FontWeight="Bold"
+					   FontSize="17"
+						    Foreground="White"/>
 				<TimePicker SelectedTime="{Binding TimeSpan}"/>
 			</StackPanel>
 			<StackPanel IsVisible="{Binding TimeSpan}"
 						Spacing="10">
-				<TextBlock Text="{Binding Schedule.StartTime, StringFormat= Начало рабочего дня : {0}}"/>
-				<TextBlock Text="{Binding Schedule.EndTime, StringFormat= Конец рабочего дня: {0}}"/>
+				<TextBlock Text="{Binding Schedule.StartTime, StringFormat= Начало рабочего дня : {0}}"
+						    FontFamily="Times New Roman"
+					   FontWeight="Bold"
+					   FontSize="17"
+						    Foreground="White"/>
+				<TextBlock Text="{Binding Schedule.EndTime, StringFormat= Конец рабочего дня: {0}}"
+						    FontFamily="Times New Roman"
+					   FontWeight="Bold"
+					   FontSize="17"
+						    Foreground="White"/>
 				<StackPanel Orientation="Horizontal">
-					<TextBlock Text="Выберите услугу"/>
+					<TextBlock Text="Выберите услугу"
+							    FontFamily="Times New Roman"
+					   FontWeight="Bold"
+					   FontSize="17"
+						    Foreground="White"/>
 					<ComboBox ItemsSource="{Binding Services}" SelectedItem="{Binding ServicePrice}">
 						<ComboBox.ItemTemplate>
 							<DataTemplate>
 								<StackPanel>
-									<TextBlock Text="{Binding Service.Name}"/>
+									<TextBlock Text="{Binding Service.Name}"
+											    FontFamily="Times New Roman"
+					   FontWeight="Bold"
+					   FontSize="17"
+						    Foreground="White"/>
 								</StackPanel>
 							</DataTemplate>
 						</ComboBox.ItemTemplate>
@@ -62,8 +104,23 @@
 					<TextBlock Text="{Binding ServicePrice.Service.Description}"/>
 				</StackPanel>
 			</StackPanel>
-			<Button Content="Записаться"
-					Command="{Binding AddVisit}"/>
+			<StackPanel Orientation="Horizontal"
+						Spacing="5">
+				<Button Content="Записаться"
+					Command="{Binding AddVisit}"
+					 FontFamily="Times New Roman"
+					   FontWeight="Bold"
+					   FontSize="17"
+						    Foreground="White"
+					Background="#03B3BC"/>
+				<Button Content="Отмена"
+						Command="{Binding GoBack}"
+						 FontFamily="Times New Roman"
+						   FontWeight="Bold"
+						   FontSize="17"
+								Foreground="White"
+						Background="#03B3BC"/>
+			</StackPanel>
 		</StackPanel>
 	</StackPanel>
 </UserControl>

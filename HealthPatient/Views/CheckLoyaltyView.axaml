@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
              x:Class="HealthPatient.Views.CheckLoyaltyView"
-			 x:DataType="vm:CheckLoyaltyViewModel">
+			 x:DataType="vm:CheckLoyaltyViewModel"
+			 Background="#016D8A">
 	<Grid ColumnDefinitions="*,*">
 		<StackPanel Grid.Column="0"
 					HorizontalAlignment="Center"
@@ -16,19 +17,21 @@
 						   FontFamily="Times New Roman"
 						   FontWeight="Bold"
 						   HorizontalAlignment="Center"
-						   VerticalAlignment="Center"/>
+						   VerticalAlignment="Center"
+						    Foreground="White"/>
 				<StackPanel>
 					<ListBox ItemsSource="{Binding Loyalty}"
 							 Height="700"
 							 Width="600"
-							 Background="White">
+							 Background="#016D8A">
 						<ListBox.ItemTemplate>
 							<DataTemplate>
 								<Border BorderBrush="Black"
 									BorderThickness="2"
 									Margin="0 5"
 									Height="150"
-									CornerRadius="5">
+									CornerRadius="5"
+										Background="White">
 									<StackPanel Spacing="10"
 												Margin="20,20">
 										<StackPanel Orientation="Horizontal"
@@ -45,6 +48,47 @@
 							</DataTemplate>
 						</ListBox.ItemTemplate>
 					</ListBox>
+				</StackPanel>
+			</StackPanel>
+		</StackPanel>
+		<StackPanel Grid.Column="1">
+			<StackPanel VerticalAlignment="Center"
+						Spacing="50">
+				<TextBlock Text="Фильтрация"
+					   	    FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	    Foreground="White"
+					   HorizontalAlignment="Center"/>
+				<StackPanel>
+					<TextBlock Text="Поиск по:"
+					   	    FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="14"
+	    Foreground="White"
+					   HorizontalAlignment="Center"/>
+					<StackPanel Orientation="Horizontal"
+								HorizontalAlignment="Center"
+								Spacing="10">
+						<ComboBox ItemsSource="{Binding Filter}"
+								  SelectedItem="{Binding ChangedFilter}"
+								  SelectedIndex="0"
+								  Width="150"
+								  Background="White"
+								  	    FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	    Foreground="Black"/>
+						<TextBox Text="{Binding TextFind}"
+								 Watermark="Введите текст"
+								 Width="200"
+								 Height="70"
+								 	    FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	    Foreground="Black"
+								 Background="White"/>
+					</StackPanel>
 				</StackPanel>
 			</StackPanel>
 		</StackPanel>

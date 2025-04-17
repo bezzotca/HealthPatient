@@ -17,7 +17,7 @@ namespace HealthPatient.ViewModels
         [ObservableProperty] Schedule schedule;
         [ObservableProperty] ServicePrice servicePrice;
         // Свойство для даты и времени (DateTimeOffset)
-        [ObservableProperty] private DateTimeOffset dateTimeOffset = new DateTimeOffset(2023, 10, 15, 14, 30, 45, TimeSpan.Zero);
+        [ObservableProperty] private DateTimeOffset dateTimeOffset;
 
         // Свойство для времени (TimeSpan)
         [ObservableProperty] private TimeSpan timeSpan = new TimeSpan(14, 30, 45);
@@ -31,6 +31,7 @@ namespace HealthPatient.ViewModels
 
         public AddVisitsViewModel()
         {
+            dateTimeOffset = DateTimeOffset.Now;
             doctors = Db.Doctors.ToList();
         }
         partial void OnDoctorChanged(Doctor value)
@@ -72,6 +73,11 @@ namespace HealthPatient.ViewModels
                 Db.SaveChanges();
                 MainWindowViewModel.Instance.PageSwitcher = new PatientWorkViewModel();
             }
+        }
+
+        public void GoBack()
+        {
+            MainWindowViewModel.Instance.PageSwitcher = new PatientWorkViewModel();
         }
     }
 }

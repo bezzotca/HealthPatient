@@ -93,5 +93,17 @@ namespace HealthPatient.Models
             Uri uridefma = new Uri($"avares://{assemblyName}/Assets/DefaultMan.jfif");
             return new Bitmap(AssetLoader.Open(uridefma));
         }
+
+        public static bool IsVis(string Status)
+        {
+            if(Status == "Прочитано")
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }

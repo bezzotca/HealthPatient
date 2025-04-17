@@ -1,8 +1,12 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using HealthPatient.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -30,6 +34,7 @@ namespace HealthPatient.ViewModels
         [ObservableProperty] string message;
         [ObservableProperty] List<Gender> genders;
         [ObservableProperty] Gender selectedGender;
+        [ObservableProperty] string image;
         public CreateUserViewModel()
         {
             filter = new List<string>
@@ -65,6 +70,106 @@ namespace HealthPatient.ViewModels
             }
         }
 
+        [RelayCommand]
+        public async Task SelectImageAsync()
+        {
+            var dialog = new OpenFileDialog
+            {
+                Title = "Выберите изображение",
+                Filters = new List<FileDialogFilter>
+        {
+            new FileDialogFilter { Name = "Изображения", Extensions = new List<string> { "jpg", "jpeg", "png", "bmp" } },
+            new FileDialogFilter { Name = "Все файлы", Extensions = new List<string> { "*" } }
+        }
+            };
+
+            // Получаем текущее окно верхнего уровня
+            var topLevel = TopLevel.GetTopLevel(App.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop
+                ? desktop.MainWindow
+                : throw new InvalidOperationException("Unable to get the main window."));
+
+            if (topLevel is Window mainWindow)
+            {
+                var result = await dialog.ShowAsync(mainWindow);
+
+                if (result != null && result.Length > 0)
+                {
+                    string selectedFilePath = result[0];
+
+                    // Проверяем существование файла
+                    if (!File.Exists(selectedFilePath))
+                    {
+                        Message = "Выбранный файл не существует.";
+                        return;
+                    }
+
+                    string fileName = Path.GetFileName(selectedFilePath);
+                    fileName = Regex.Replace(fileName, @"[<>:""/\\|?*]", "_"); // Очищаем имя файла от недопустимых символов
+
+                    // Определяем путь к корневой директории проекта
+                    string projectDirectory = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, @"..\..\.."));
+
+                    // Определяем папку назначения
+                    string destinationFolder;
+                    if (ChangedFilter == "Врач")
+                    {
+                        destinationFolder = Path.Combine(projectDirectory, "Assets", "Media", "Doctors_media");
+                    }
+                    else
+                    {
+                        destinationFolder = Path.Combine(projectDirectory, "Assets", "Media", "Patients_media");
+                    }
+
+                    // Полный путь для сохранения файла
+                    string destinationPath = Path.Combine(destinationFolder, fileName);
+                    Console.WriteLine($"Copying file from: {selectedFilePath}");
+                    Console.WriteLine($"Copying file to: {destinationPath}");
+
+                    try
+                    {
+                        // Если уже есть сохраненный файл, удаляем его
+                        if (!string.IsNullOrEmpty(Image))
+                        {
+                            string previousFilePath = Path.Combine(destinationFolder, Image);
+                            if (File.Exists(previousFilePath))
+                            {
+                                File.Delete(previousFilePath);
+                                Console.WriteLine($"Previous file deleted: {previousFilePath}");
+                            }
+                        }
+
+                        // Копируем новый файл
+                        File.Copy(selectedFilePath, destinationPath, overwrite: true);
+                        Image = fileName; // Сохраняем имя нового файла
+                        Message = $"Файл успешно скопирован: {fileName}";
+                    }
+                    catch (FileNotFoundException)
+                    {
+                        Message = "Исходный файл не найден.";
+                    }
+                    catch (IOException ex)
+                    {
+                        Message = $"Ошибка ввода-вывода: {ex.Message}";
+                    }
+                    catch (UnauthorizedAccessException)
+                    {
+                        Message = "Нет прав для записи в указанную папку.";
+                    }
+                    catch (Exception ex)
+                    {
+                        Message = $"Неизвестная ошибка: {ex.Message}";
+                    }
+                }
+                else
+                {
+                    Message = "Файл не выбран.";
+                }
+            }
+            else
+            {
+                Message = "Не удалось получить главное окно.";
+            }
+        }
         bool IsPasswordValid()
         {
 
@@ -93,6 +198,7 @@ namespace HealthPatient.ViewModels
 
             return Regex.IsMatch(Email, emailPattern);
         }
+
         public void CreateUser()
         {
             Message = null;
@@ -162,7 +268,7 @@ namespace HealthPatient.ViewModels
                                 Email = Email,
                                 Login = Login,
                                 Password = Password,
-                                Image = "None",
+                                Image = Image,
                                 GenderId = SelectedGender.GenderId,
                                 CreatedAt = DateTime.Now,
                                 UpdatedAt = DateTime.Now,

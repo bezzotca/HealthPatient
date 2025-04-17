@@ -5,32 +5,32 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
              x:Class="HealthPatient.Views.DoctorsMainView"
-             x:DataType="vm:DoctorsMainViewModel">
+             x:DataType="vm:DoctorsMainViewModel"
+			 Background="#016D8A">
 	<Grid ColumnDefinitions="*,*">
 		<StackPanel Margin="0,10" Grid.Column="0">
-			<!-- Заголовок -->
 			<TextBlock Text="Доктора"
 					   FontWeight="Bold"
 					   FontFamily="Times New Roman"
-					   FontSize="24"
+					   FontSize="32"
 					   HorizontalAlignment="Center"
-					   Margin="0 0 0 40"/>
-
-			<!-- Список докторов -->
+					   Margin="0 0 0 40"
+					   Foreground="White"/>
 			<StackPanel>
 				<ListBox ItemsSource="{Binding Doctors}"
 						 ScrollViewer.VerticalScrollBarVisibility="Auto"
 						 Width="600"
 						 Height="700"
 						 HorizontalAlignment="Center"
-						 Background="White">
+						 Background="#016D8A">
 					<ListBox.ItemTemplate>
 						<DataTemplate>
 							<Border BorderBrush="Black"
 									BorderThickness="2"
 									Margin="0 5"
 									Height="250"
-									CornerRadius="5">
+									CornerRadius="5"
+									Background="White">
 								<Grid ColumnDefinitions="200,*">
 									<StackPanel Grid.Column="0"
 												VerticalAlignment="Center">
@@ -43,17 +43,37 @@
 										<StackPanel Orientation="Horizontal"
 													Spacing="10"
 													Margin="5,5">
-											<TextBlock Text="{Binding LastName, StringFormat= Фио : {0}}" />
+											<TextBlock Text="{Binding LastName, StringFormat= Фио : {0}}"
+													   												   	    FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	    Foreground="Black"/>
 											<TextBlock Text=" " />
-											<TextBlock Text="{Binding FirstName}" />
+											<TextBlock Text="{Binding FirstName}"
+													   												   	    FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	    Foreground="Black"/>
 											<TextBlock Text=" " />
-											<TextBlock Text="{Binding Patronymic}" />
+											<TextBlock Text="{Binding Patronymic}"
+													   												   	    FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	    Foreground="Black"/>
 										</StackPanel>
-										<StackPanel HorizontalAlignment="Center" 
+										<StackPanel HorizontalAlignment="Center"
 													Spacing="10"
 													Margin="0,10">
-											<TextBlock Text="Характеристика врача"/>
+											<TextBlock Text="Характеристика врача"
+													   												   	    FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	    Foreground="Black"/>
 											<TextBox Text="{Binding Bio}"
+													 												   	    FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	    Foreground="Black"
 													 IsReadOnly="True"
 													 TextWrapping="Wrap"
 													 Width="350"
@@ -62,57 +82,73 @@
 										<StackPanel HorizontalAlignment="Center"
 													Spacing="20"
 													Orientation="Horizontal">
-											<TextBlock Text="Создан"/>
-											<TextBlock Text="Изменен"/>
+											<TextBlock Text="Создан"
+													   												   	    FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	    Foreground="Black"/>
+											<TextBlock Text="Изменен"
+													   												   	    FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	    Foreground="Black"/>
 										</StackPanel>
 										<StackPanel HorizontalAlignment="Center"
 													Spacing="2"
 													Orientation="Horizontal">
-											<TextBlock Text="{Binding CreatedAt}"/>
-											<TextBlock Text="{Binding UpdatedAt}"/>
+											<TextBlock Text="{Binding CreatedAt}"
+													   												   	    FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	    Foreground="Black"/>
+											<TextBlock Text="{Binding UpdatedAt}"
+													   												   	    FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	    Foreground="Black"/>
 										</StackPanel>
-										<StackPanel Orientation="Horizontal" 
+										<StackPanel Orientation="Horizontal"
 													Spacing="15"
 													HorizontalAlignment="Center">
 											<Button Content="Приёмы"
 													HorizontalContentAlignment="Center"
-													Foreground="Black"
-													Background="#b279f6"
+													Foreground="White"
+													Background="#03B3BC"
 													CommandParameter="{Binding}"
 													Command="{Binding $parent[UserControl]((vm:DoctorsMainViewModel)DataContext).CheckVisits}"/>
 											<Button Content="Достижения"
 													HorizontalContentAlignment="Center"
-													Foreground="Black"
-													Background="#b279f6"
+													Foreground="White"
+													Background="#03B3BC"
 													CommandParameter="{Binding}"
 													Command="{Binding $parent[UserControl]((vm:DoctorsMainViewModel)DataContext).CheckAchievements}"/>
 											<Button Content="Отзывы"
 													HorizontalContentAlignment="Center"
-													Foreground="Black"
-													Background="#b279f6"
+													Foreground="White"
+													Background="#03B3BC"
 													CommandParameter="{Binding}"
 													Command="{Binding $parent[UserControl]((vm:DoctorsMainViewModel)DataContext).CheckReviews}"/>
 										</StackPanel>
-										<StackPanel Orientation="Horizontal" 
-													Spacing="5" 
+										<StackPanel Orientation="Horizontal"
+													Spacing="5"
 													HorizontalAlignment="Center"
 													Margin="0,5">
 											<Button Content="Расписание"
 													HorizontalContentAlignment="Center"
-													Foreground="Black"
-													Background="#b279f6"
+													Foreground="White"
+													Background="#03B3BC"
 													CommandParameter="{Binding}"
 													Command="{Binding $parent[UserControl]((vm:DoctorsMainViewModel)DataContext).CheckSchedule}"/>
 											<Button Content="Редактировать"
 													HorizontalContentAlignment="Center"
-													Foreground="Black"
-													Background="#b279f6"
+													Foreground="White"
+													Background="#03B3BC"
 													CommandParameter="{Binding}"
 													Command="{Binding $parent[UserControl]((vm:DoctorsMainViewModel)DataContext).RedactInfoAboutDoctor}"/>
 											<Button Content="Специалитет"
 													HorizontalContentAlignment="Center"
-													Foreground="Black"
-													Background="#b279f6"
+													Foreground="White"
+													Background="#03B3BC"
 													Command="{Binding $parent[UserControl]((vm:DoctorsMainViewModel)DataContext).CheckSpecialty}"
 													CommandParameter="{Binding}"/>
 										</StackPanel>
@@ -128,15 +164,17 @@
 			<StackPanel VerticalAlignment="Center"
 						Spacing="50">
 				<TextBlock Text="Фильтрация"
-					   FontWeight="Bold"
-					   FontFamily="Times New Roman"
-					   FontSize="16"
+					   	    FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	    Foreground="White"
 					   HorizontalAlignment="Center"/>
 				<StackPanel>
 					<TextBlock Text="Поиск по:"
-					   FontWeight="Bold"
-					   FontFamily="Times New Roman"
-					   FontSize="14"
+					   	    FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	    Foreground="White"
 					   HorizontalAlignment="Center"/>
 					<StackPanel Orientation="Horizontal"
 								HorizontalAlignment="Center"
@@ -144,13 +182,23 @@
 						<ComboBox ItemsSource="{Binding Filter}"
 								  SelectedItem="{Binding ChangedFilter}"
 								  SelectedIndex="0"
-								  Width="150"/>
+								  Width="150"
+								  Background="White"
+								  	    FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	    Foreground="Black"/>
 						<TextBox Text="{Binding TextFind}"
 								 Watermark="Введите текст"
 								 Width="200"
-								 Height="70"/>
+								 Height="70"
+								 	    FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	    Foreground="Black"
+								 Background="White"/>
 					</StackPanel>
-				</StackPanel>	
+				</StackPanel>
 			</StackPanel>
 		</StackPanel>
 	</Grid>

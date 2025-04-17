@@ -6,7 +6,7 @@
              mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
              x:Class="HealthPatient.Views.LoginView"
 			 x:DataType="vm:LoginViewModel"
-			 Background="#f3c4ed">
+			 Background="#016D8A">
 	<Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 		<Border BorderBrush="Black"
 				BorderThickness="2"
@@ -21,12 +21,14 @@
 						   HorizontalAlignment="Center"
 						   FontFamily="Times New Roman"
 						   FontSize="30"
-						   FontWeight="Bold"/>
+						   FontWeight="Bold"
+						   Foreground="#434E93"/>
 				<TextBlock Text="Логин"
 						   FontFamily="Times New Roman"
 						   FontSize="18"
 						   FontWeight="Normal"
-						   HorizontalAlignment="Left"/>
+						   HorizontalAlignment="Left"
+						   Foreground="#434E93"/>
 				<TextBox Width="200" 
 						 Height="30"
 						 Text="{Binding Login}"/>
@@ -34,7 +36,8 @@
 						   FontFamily="Times New Roman"
 						   FontSize="18"
 						   FontWeight="Normal"
-						   HorizontalAlignment="Left"/>
+						   HorizontalAlignment="Left"
+						   Foreground="#434E93"/>
 				<TextBox Width="200" 
 						 Height="30"
 						 Text="{Binding Password}"
@@ -44,8 +47,8 @@
 						Width="200"
 						HorizontalContentAlignment="Center"
 						Height="30"
-						Foreground="Black"
-						Background="#7B68EE"
+						Foreground="White"
+						Background="#478DCA"
 						Command="{Binding GenerateCaptchaCommand}"
 						HorizontalAlignment="Center"/>
 				<TextBox Width="200"
@@ -55,8 +58,8 @@
 						Width="200"
 						HorizontalContentAlignment="Center"
 						Height="30"
-						Foreground="Black"
-						Background="#c3f174"
+						Foreground="White"
+						Background="#03B3BC"
 						Command="{Binding ValidateAndEnter}"
 						HorizontalAlignment="Center"/>
 				<TextBlock Text="{Binding ResultOutputMessage}"

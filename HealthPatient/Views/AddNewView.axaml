@@ -5,32 +5,60 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="HealthPatient.Views.AddNewView"
-			 x:DataType="vm:AddNewViewModel">
+			 x:DataType="vm:AddNewViewModel"
+			 Background="#016D8A">
 	<StackPanel VerticalAlignment="Center"
 				HorizontalAlignment="Center">
 		<StackPanel Spacing="20">
 			<TextBlock Text="Добавление новости"
-					   HorizontalAlignment="Center"/>
+					   HorizontalAlignment="Center"
+					   	    FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="32"
+	    Foreground="White"/>
 			<StackPanel Orientation="Horizontal"
 						Spacing="3">
-				<TextBlock Text="Заголовок"/>
+				<TextBlock Text="Заголовок"
+						   	    FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	    Foreground="White"/>
 				<TextBox Width="250"
 						 Height="150"
-						  Text="{Binding Title}"/>
+						 	    FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	    Foreground="Black"
+						  Text="{Binding Title}"
+						 Background="White"/>
 			</StackPanel>
 			<StackPanel Orientation="Horizontal"
 						Spacing="3">
-				<TextBlock Text="Основной текст"/>
+				<TextBlock 	    FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	    Foreground="White"
+					Text="Основной текст"/>
 				<TextBox Width="250"
 						 Height="150"
-						 Text="{Binding MainText}"/>
+						 	    FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	    Foreground="Black"
+						 Text="{Binding MainText}"
+						 Background="White"/>
 			</StackPanel>
 			<Button Content="Добавить новость"
 					HorizontalAlignment="Center"
 					HorizontalContentAlignment="Center"
 					Width="200"
 					Height="30"
-					Command="{Binding AddNew}"/>
+						    FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	    Foreground="White"
+					Command="{Binding AddNew}"
+					Background="#03B3BC"/>
 		</StackPanel>
 	</StackPanel>
 </UserControl>

@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="HealthPatient.Views.AdminRightsView"
-			 x:DataType="vm:AdminRightsViewModel">
+			 x:DataType="vm:AdminRightsViewModel"
+			 Background="#016D8A">
 	<StackPanel HorizontalAlignment="Center"
 				VerticalAlignment="Center">
 		<StackPanel Spacing="20">
@@ -13,45 +14,49 @@
 					   FontSize="24"
 						   FontFamily="Times New Roman"
 						   FontWeight="Bold"
-						   HorizontalAlignment="Center"/>
+						   HorizontalAlignment="Center"
+					   Foreground="White"/>
 			<StackPanel Orientation="Horizontal"
 						Spacing="3">
 				<TextBlock Text="{Binding MrMrs}"
 						   FontSize="24"
 						   FontFamily="Times New Roman"
 						   FontWeight="Normal"
-						   HorizontalAlignment="Center"/>
+						   HorizontalAlignment="Center"
+						    Foreground="White"/>
 				<TextBlock Text="{Binding Admin.FirstName}"
 						   FontSize="24"
 						   FontFamily="Times New Roman"
 						   FontWeight="Normal"
-						   HorizontalAlignment="Center"/>
+						   HorizontalAlignment="Center"
+						    Foreground="White"/>
 			</StackPanel>
 			<TextBlock Text="Выберите действие"
 					   FontSize="24"
 						   FontFamily="Times New Roman"
 						   FontWeight="Bold"
-						   HorizontalAlignment="Center"/>
+						   HorizontalAlignment="Center"
+					    Foreground="White"/>
 			<StackPanel Orientation="Horizontal"
 						Spacing="10">
 				<Button Content="Редактировать профиль"
 						HorizontalAlignment="Center"
 						Command="{Binding Redact}"
 						HorizontalContentAlignment="Center"
-													Foreground="Black"
-													Background="#b279f6"/>
+													Foreground="White"
+													Background="#03B3BC"/>
 				<Button Content="Добавить новость"
 						HorizontalAlignment="Center"
 						Command="{Binding AddNews}"
 						HorizontalContentAlignment="Center"
-													Foreground="Black"
-													Background="#b279f6"/>
+													Foreground="White"
+													Background="#03B3BC"/>
 				<Button Content="Зарегистрировать пользователя"
 						HorizontalAlignment="Center"
 						Command="{Binding AddUser}"
 						HorizontalContentAlignment="Center"
-													Foreground="Black"
-													Background="#b279f6"/>
+													Foreground="White"
+													Background="#03B3BC"/>
 			</StackPanel>
 		</StackPanel>
 	</StackPanel>

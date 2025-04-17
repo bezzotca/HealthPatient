@@ -1,4 +1,7 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using HealthPatient.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +11,14 @@ namespace HealthPatient.ViewModels
 {
     public partial class DoctorWorkViewModel: ViewModelBase
     {
+        [ObservableProperty] List<Schedule> schedule;
+        [ObservableProperty] List<News> news;
 
-
+        public DoctorWorkViewModel()
+        {
+            schedule = Db.Schedules.Include(x => x.Doctor).ToList();
+            news = Db.News.ToList();
+        }
 
         public void CheckVisits()
         {

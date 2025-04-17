@@ -18,8 +18,13 @@ namespace HealthPatient.ViewModels
 
         public AchievementsViewModel()
         {
+            Achieve();
+        }
+
+        public void Achieve()
+        {
             doctor = MainWindowViewModel.Instance.Doctor;
-            achievements = Db.DoctorAchievements.Include(x=>x.Doctor).Include(x=>x.Achievement).Where(x=>x.DoctorId == doctor.DoctorId).ToList();
+            achievements = Db.DoctorAchievements.Include(x => x.Doctor).Include(x => x.Achievement).Where(x => x.DoctorId == doctor.DoctorId).ToList();
             count = achievements.Count;
             allCount = Db.Achievements.Count();
         }

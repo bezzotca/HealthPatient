@@ -35,7 +35,7 @@
 		</Image>
 
 		<!-- Анимация текста "Health Patient" -->
-		<TextBlock Text="Health Patient"
+		<TextBlock Text="Crystal Dental Studio"
 				   FontSize="36"
 				   Foreground="#2A4365"
 				   Opacity="0"

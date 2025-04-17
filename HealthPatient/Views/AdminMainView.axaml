@@ -8,7 +8,7 @@
 			 x:DataType="vm:AdminMainViewModel">
 		<SplitView IsPaneOpen ="True" DisplayMode="Inline">
 		<SplitView.Pane >
-			<StackPanel Background="#423189">
+			<StackPanel Background="#016D8A">
 				<StackPanel Spacing="30"
 					HorizontalAlignment="Center">
 					<TextBlock Text="Панель администратора"
@@ -19,7 +19,8 @@
 							   Margin="0,20,20,20"
 							   HorizontalAlignment="Center"/>
 				</StackPanel>
-				<Border BorderBrush="#3e0b74" BorderThickness="0 4 0 0">
+				<Border BorderBrush="White" 
+						BorderThickness="0 4 0 0">
 					<StackPanel Spacing="60"
 								HorizontalAlignment="Center"
 								VerticalAlignment="Center"
@@ -28,7 +29,7 @@
 						Width="200"
 						HorizontalContentAlignment="Center"
 						Foreground="White"
-						Background="Transparent"
+						Background="#00C9D3"
 						FontWeight="Normal"
 						FontSize="20"
 								Command="{Binding CheckAdminRights}"
@@ -37,7 +38,7 @@
 								Width="200"
 								HorizontalContentAlignment="Center"
 								Foreground="White"
-								Background="Transparent"
+								Background="#00C9D3"
 								FontWeight="Normal"
 								FontSize="20"
 								Command="{Binding CheckDoctors}"
@@ -46,7 +47,7 @@
 								Width="200"
 								HorizontalContentAlignment="Center"
 								Foreground="White"
-								Background="Transparent"
+								Background="#00C9D3"
 								FontWeight="Normal"
 								FontSize="20"
 								Command="{Binding CheckPatients}"
@@ -55,7 +56,7 @@
 								Width="200"
 								HorizontalContentAlignment="Center"
 								Foreground="White"
-								Background="Transparent"
+								Background="#00C9D3"
 								FontWeight="Normal"
 								FontSize="20"
 								Command="{Binding CheckAllVisits}"
@@ -64,21 +65,21 @@
 								Width="200"
 								HorizontalContentAlignment="Center"
 								Foreground="White"
-								Background="Transparent"
+								Background="#00C9D3"
 								FontSize="20"
 								Command="{Binding CheckAllReviews}"/>
 						<Button Content="Лояльность"
 								Width="200"
 								HorizontalContentAlignment="Center"
 								Foreground="White"
-								Background="Transparent"
+								Background="#00C9D3"
 								FontSize="20"
 								Command="{Binding CheckAllLoyalty}"/>
 						<Button Content="Назад"
 								Width="200"
 								HorizontalContentAlignment="Center"
 								Foreground="White"
-								Background="Transparent"
+								Background="#00C9D3"
 								FontSize="20"
 								Command="{Binding GoBack}"/>
 					</StackPanel>

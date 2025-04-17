@@ -14,8 +14,8 @@ namespace HealthPatient.ViewModels
     {
         [ObservableProperty] List<Patient> patients;
         [ObservableProperty] List<Patient> patients0;
-        [ObservableProperty] List<string> filter;
         [ObservableProperty] string textFind;
+        [ObservableProperty] List<string> filter;
         [ObservableProperty] string changedFilter;
         public PatientsMainViewModel()
         {
@@ -100,24 +100,28 @@ namespace HealthPatient.ViewModels
         {
             MainWindowViewModel.Instance.Patient = patient;
             MainWindowViewModel.Instance.Doctor = null;
+            MainWindowViewModel.Instance.PrevPage = "PatientsMainViewModel";
             MainWindowViewModel.Instance.PageSwitcherAdminPanel = new CheckLoyaltyViewModel();
         }
         public void GoToVisits(Patient patient)
         {
             MainWindowViewModel.Instance.Patient = patient;
             MainWindowViewModel.Instance.Doctor = null;
+            MainWindowViewModel.Instance.PrevPage = "PatientsMainViewModel";
             MainWindowViewModel.Instance.PageSwitcherAdminPanel = new CheckVisitsViewModel();
         }
         public void GoToNotifications(Patient patient)
         {
             MainWindowViewModel.Instance.Patient = patient;
             MainWindowViewModel.Instance.Doctor = null;
+            MainWindowViewModel.Instance.PrevPage = "PatientsMainViewModel";
             MainWindowViewModel.Instance.PageSwitcherAdminPanel = new NotificationsViewModel();
         }
         public void RedactInfoAboutPatient(Patient patient)
         {
             MainWindowViewModel.Instance.Patient = patient;
             MainWindowViewModel.Instance.Doctor = null;
+            MainWindowViewModel.Instance.PrevPage = "PatientsMainViewModel";
             MainWindowViewModel.Instance.PageSwitcherAdminPanel = new RedactInfoAboutPatientViewModel();
         }
     }

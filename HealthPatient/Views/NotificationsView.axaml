@@ -5,75 +5,152 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="HealthPatient.Views.NotificationsView"
-			 x:DataType="vm:NotificationsViewModel">
+			 x:DataType="vm:NotificationsViewModel"
+			 Background="#016D8A">
 	<Grid ColumnDefinitions="*,*">
 		<StackPanel Grid.Column="0"
 					VerticalAlignment="Center"
 						HorizontalAlignment="Center">
 			<StackPanel Spacing="20">
-				<TextBlock Text="Приёмы"/>
+				<TextBlock Text="Уведомления"
+						   	    FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="32"
+	    Foreground="White"
+						   HorizontalAlignment="Center"/>
 				<ListBox ItemsSource="{Binding Notifications}"
 						 Width="600"
 						 Height="700"
-						 Background="White">
+						 Background="#016D8A">
 					<ListBox.ItemTemplate>
 						<DataTemplate>
 							<Border BorderThickness="2"
 									CornerRadius="5"
 									BorderBrush="Black"
-									Height="300">
+									Height="350"
+									Background="White">
 								<StackPanel Spacing="10"
 											Margin="20,20">
 									<StackPanel Orientation="Horizontal"
 												Spacing="2">
-										<TextBlock Text="Пациент:"/>
-										<TextBlock Text="{Binding Patient.LastName}"/>
-										<TextBlock Text="{Binding Patient.FirstName}"/>
-										<TextBlock Text="{Binding Patient.Patronymic}"/>
+										<TextBlock Text="Пациент:"
+												   												   	    FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	    Foreground="Black"/>
+										<TextBlock Text="{Binding Patient.LastName}"
+												   												   	    FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	    Foreground="Black"/>
+										<TextBlock Text="{Binding Patient.FirstName}"
+												   												   	    FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	    Foreground="Black"/>
+										<TextBlock Text="{Binding Patient.Patronymic}"
+												   												   	    FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	    Foreground="Black"/>
 									</StackPanel>
 									<StackPanel
 										Orientation="Horizontal"
 										Spacing="5">
-										<TextBlock Text="Статус"/>
-										<TextBox Text="{Binding Status}"/>
+										<TextBlock Text="Статус"
+												   												   	    FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	    Foreground="Black"/>
+										<TextBox Text="{Binding Status}"
+												 												   	    FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	    Foreground="Black"/>
 									</StackPanel>
 									<StackPanel
 										Orientation="Horizontal"
 										Spacing="5">
-										<TextBlock Text="Лечащий врач"/>
-										<TextBlock Text="{Binding Doctor.LastName}"/>
-										<TextBlock Text="{Binding Doctor.FirstName}"/>
-										<TextBlock Text="{Binding Doctor.Patronymic}"/>
+										<TextBlock Text="Лечащий врач"
+												   												   	    FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	    Foreground="Black"/>
+										<TextBlock Text="{Binding Doctor.LastName}"
+												   												   	    FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	    Foreground="Black"/>
+										<TextBlock Text="{Binding Doctor.FirstName}"
+												   												   	    FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	    Foreground="Black"/>
+										<TextBlock Text="{Binding Doctor.Patronymic}"
+												   												   	    FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	    Foreground="Black"/>
 									</StackPanel>
 									<StackPanel
 										Orientation="Horizontal"
 										Spacing="5">
-										<TextBlock Text="Тип"/>
-										<TextBlock Text="{Binding Type}"/>
+										<TextBlock Text="Тип"
+												   												   	    FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	    Foreground="Black"/>
+										<TextBlock Text="{Binding Type}"
+												   												   	    FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	    Foreground="Black"/>
 									</StackPanel>
 									<StackPanel
 										Orientation="Horizontal"
 										Spacing="5">
-										<TextBlock Text="Сообщение"/>
+										<TextBlock Text="Сообщение"
+												   												   	    FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	    Foreground="Black"/>
 										<TextBox Text="{Binding Message}"
 												 TextWrapping="Wrap"
 												 Height="50"
-												 Width="200"/>
+												 Width="200"
+												 												   	    FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	    Foreground="Black"/>
 									</StackPanel>
 									<Button Content="Сохранить изменения"
 													HorizontalContentAlignment="Center"
-													Foreground="Black"
-													Background="#b279f6"
+													Foreground="White"
+Background="#03B3BC"
 											CommandParameter="{Binding}"
 													Command="{Binding $parent[UserControl]((vm:NotificationsViewModel)DataContext).Save}"
 											HorizontalAlignment="Center"/>
-									<Button Content="Прочитать"
+									<StackPanel 
+										IsVisible="{Binding IsVis}">
+										<Button Content="Прочитать"
 													HorizontalContentAlignment="Center"
-													Foreground="Black"
-													Background="#b279f6"
+													Foreground="White"
+Background="#03B3BC"
 											CommandParameter="{Binding}"
 													Command="{Binding $parent[UserControl]((vm:NotificationsViewModel)DataContext).Read}"
 											HorizontalAlignment="Center"/>
+									</StackPanel>
+									<StackPanel>
+										<Button Content="Изменить статус"
+													HorizontalContentAlignment="Center"
+													Foreground="White"
+Background="#03B3BC"
+											CommandParameter="{Binding}"
+													IsVisible="{Binding $parent[UserControl]((vm:NotificationsViewModel)DataContext).IsVisibleButton2}"
+												Command="{Binding $parent[UserControl]((vm:NotificationsViewModel)DataContext).UnRead}"
+											HorizontalAlignment="Center"/>
+									</StackPanel>
+									
 								</StackPanel>
 							</Border>
 
@@ -84,7 +161,10 @@
 		</StackPanel>
 		<StackPanel Grid.Column="1">
 			<StackPanel IsVisible="{Binding IsVisibleButton}">
-				<Button Content="Назад" Command="{Binding GoBack}"/>
+				<Button Content="Назад"
+						Command="{Binding GoBack}"
+						Foreground="White"
+Background="#03B3BC"/>
 			</StackPanel>
 		</StackPanel>
 	</Grid>

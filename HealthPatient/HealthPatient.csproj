@@ -9,16 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Assets\Media\Administrators_media\" />
-    <Folder Include="Assets\Media\Patients_media\" />
-    <Folder Include="Assets\Media\Doctors_media\" />
-    <Folder Include="Assets\Media\Design_media\" />
     <AvaloniaResource Include="Assets\**" />
-    <Folder Include="Assets\Media\Achievements_media\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <Folder Include="Assets\Media\Patients_media\" />
+    <Folder Include="Assets\Reports\" />
+    <Folder Include="Assets\Reports\Пациент_Петрова\" />
+    <None Remove="Assets\logo.ico" />
     <None Remove="Assets\logo.png" />
+    <Folder Include="Assets\Media\Achievements_media\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,4 +41,15 @@
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.2" />
     <PackageReference Include="QuestPDF" Version="2025.1.6" />
   </ItemGroup>
+	
+	<ItemGroup>
+		<Content Include="Assets\**">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<AvaloniaResource Include="Assets\Media\Doctors_media\*.png" />
+		<AvaloniaResource Include="Assets\Media\Doctors_media\*.jpg" />
+	</ItemGroup>
 </Project>

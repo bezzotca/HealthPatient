@@ -5,35 +5,164 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="HealthPatient.Views.DoctorWorkView"
-			 x:DataType="vm:DoctorWorkViewModel">
-	<StackPanel HorizontalAlignment="Center"
-				VerticalAlignment="Center">
-		<StackPanel>
-			<StackPanel Orientation="Horizontal"
-						Spacing="3">
-				<Button Content="Приёмы"
+			 x:DataType="vm:DoctorWorkViewModel"
+			 Background="#016D8A">
+	<Grid RowDefinitions="80,*">
+		<StackPanel HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					Grid.Row="0">
+			<StackPanel>
+				<StackPanel Orientation="Horizontal"
+							Spacing="3">
+					<Button Content="Приёмы"
 													HorizontalContentAlignment="Center"
-													Foreground="Black"
-													Background="#b279f6"
+													Foreground="White"
+							Background="#03B3BC"
 											CommandParameter="{Binding}"
 													Command="{Binding CheckVisits}"
 											HorizontalAlignment="Center"/>
-				<Button Content="Отзывы"
-														HorizontalContentAlignment="Center"
-														Foreground="Black"
-														Background="#b279f6"
-												CommandParameter="{Binding}"
-														Command="{Binding CheckVisits}"
-												HorizontalAlignment="Center"/>
-				<Button Content="Назад"
-														HorizontalContentAlignment="Center"
-														Foreground="Black"
-														Background="#b279f6"
-												CommandParameter="{Binding}"
-														Command="{Binding GoBack}"
-												HorizontalAlignment="Center"/>
+					<Button Content="Отзывы"
+															HorizontalContentAlignment="Center"
+															Foreground="White"
+							Background="#03B3BC"
+													CommandParameter="{Binding}"
+															Command="{Binding CheckReviews}"
+													HorizontalAlignment="Center"/>
+					<Button Content="Назад"
+															HorizontalContentAlignment="Center"
+															Foreground="White"
+							Background="#03B3BC"
+													CommandParameter="{Binding}"
+															Command="{Binding GoBack}"
+													HorizontalAlignment="Center"/>
+				</StackPanel>
+
 			</StackPanel>
-			
 		</StackPanel>
-	</StackPanel>
+		<Grid Grid.Row="1"
+			  ColumnDefinitions="*,*">
+			<StackPanel Grid.Column="0"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						Spacing="10">
+				<TextBlock Text="Расписания врачей"
+										   FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	Foreground="White"/>
+				<ListBox ItemsSource="{Binding Schedule}"
+								  Background="#016D8A"
+						 Width="400"
+						 Height="600">
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<Border BorderBrush="Black"
+									BorderThickness="2"
+									Margin="5 5"
+									Height="200"
+									CornerRadius="5"
+									Background="White">
+								<StackPanel Spacing="10">
+									<StackPanel Orientation="Horizontal"
+												Spacing="2">
+										<TextBlock Text="{Binding Doctor.LastName, StringFormat= ФИО врача : {0}}"
+														FontFamily="Times New Roman"
+	FontWeight="Bold"
+	FontSize="17"
+		Foreground="Black"/>
+										<TextBlock Text="{Binding Doctor.FirstName}"
+														FontFamily="Times New Roman"
+	FontWeight="Bold"
+	FontSize="17"
+		Foreground="Black"/>
+										<TextBlock Text="{Binding Doctor.Patronymic}"
+														FontFamily="Times New Roman"
+	FontWeight="Bold"
+	FontSize="17"
+		Foreground="Black"/>
+									</StackPanel>
+									<TextBlock Text="{Binding DatestartSchedule, StringFormat= Начало расписания : {0}}"
+													FontFamily="Times New Roman"
+	FontWeight="Bold"
+	FontSize="17"
+		Foreground="Black"/>
+									<TextBlock Text="{Binding DateendSchedule, StringFormat= Начало расписания : {0}}"
+													FontFamily="Times New Roman"
+	FontWeight="Bold"
+	FontSize="17"
+		Foreground="Black"/>
+									<TextBlock Text="{Binding StartTime, StringFormat= Начало рабочего времени : {0}}"
+													FontFamily="Times New Roman"
+	FontWeight="Bold"
+	FontSize="17"
+		Foreground="Black"/>
+									<TextBlock Text="{Binding EndTime, StringFormat= Конец рабочего времени : {0}}"
+													FontFamily="Times New Roman"
+	FontWeight="Bold"
+	FontSize="17"
+		Foreground="Black"/>
+								</StackPanel>
+							</Border>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+			</StackPanel>
+			<StackPanel Grid.Column="1"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						Spacing="10">
+				<TextBlock Text="Актуальные новости"
+										   FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	Foreground="White"/>
+				<ListBox ItemsSource="{Binding News}"
+						 Background="#016D8A"
+						  Width="400"
+						 Height="600">
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<Border BorderBrush="Black"
+									BorderThickness="2"
+									Margin="5 5"
+									Height="100"
+									CornerRadius="5"
+									Background="White">
+								<StackPanel Spacing="5">
+
+									<StackPanel Orientation="Horizontal"
+												Spacing="3">
+										<TextBlock Text="Заголовок: "
+										   FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	Foreground="Black"/>
+										<TextBlock Text="{Binding Titlenew}"
+										   FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	Foreground="Black"/>
+									</StackPanel>
+
+									<StackPanel Orientation="Horizontal"
+												Spacing="3">
+										<TextBlock Text="Новость: "
+												 FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	Foreground="Black"/>
+										<TextBox Text="{Binding Titlenew}"
+												 FontFamily="Times New Roman"
+FontWeight="Bold"
+FontSize="17"
+	Foreground="Black"/>
+									</StackPanel>
+								</StackPanel>
+							</Border>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+			</StackPanel>
+		</Grid>
+	</Grid>
 </UserControl>
