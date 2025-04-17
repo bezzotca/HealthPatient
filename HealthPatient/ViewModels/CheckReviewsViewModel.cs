@@ -4,6 +4,7 @@ using HealthPatient.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ namespace HealthPatient.ViewModels
     {
         [ObservableProperty] Doctor doctor;
         [ObservableProperty] List<Review> reviews;
+        [ObservableProperty] List<Review> reviews0;
         [ObservableProperty] bool isVisibleButton;
         [ObservableProperty] List<string> filter;
         [ObservableProperty] string changedFilter;
@@ -24,6 +26,7 @@ namespace HealthPatient.ViewModels
             if(doctor != null)
             {
                 reviews = Db.Reviews.Include(x => x.Doctor).Include(x => x.Patient).Where(x => x.DoctorId == doctor.DoctorId).ToList();
+                reviews0 = Db.Reviews.Include(x => x.Doctor).Include(x => x.Patient).Where(x => x.DoctorId == doctor.DoctorId).ToList();
             }
             else if(doctor == null && MainWindowViewModel.Instance.Patient == null)
             {
@@ -36,9 +39,7 @@ namespace HealthPatient.ViewModels
             filter = new List<string>
                 {
                     "Без фильтра",
-                    "Фамилия",
-                    "Имя",
-                    "Отчество",
+                    "Комментарий",
                 };
         }
 
@@ -50,26 +51,21 @@ namespace HealthPatient.ViewModels
         {
             if (ChangedFilter == "Без фильтра")
             {
-               
+                Reviews = reviews0;
             }
             else if (ChangedFilter != "Без фильтра")
             {
                 if (value == "" || value == null)
                 {
-                    
+                    Reviews = reviews0;
                 }
                 else if (value != "")
                 {
                     switch (ChangedFilter)
                     {
-                        case "Фамилия":
-                            
-                            break;
-                        case "Имя":
-                           
-                            break;
-                        case "Отчество":
-                            
+                        case "Комментарий":
+                            Reviews = reviews0;
+                            Reviews = Db.Reviews.Where(x => x.Comment.Contains(value)).ToList();
                             break;
                     }
                 }
@@ -80,26 +76,21 @@ namespace HealthPatient.ViewModels
         {
             if (value == "Без фильтра")
             {
-
+                Reviews = reviews0;
             }
             else if (value != "Без фильтра")
             {
                 if (TextFind == "" || TextFind == null)
                 {
-
+                    Reviews = reviews0;
                 }
                 else if (TextFind != "")
                 {
                     switch (value)
                     {
-                        case "Фамилия":
-                            
-                            break;
-                        case "Имя":
-                            
-                            break;
-                        case "Отчество":
-                            
+                        case "Комментарий":
+                            Reviews = reviews0;
+                            Reviews = Db.Reviews.Where(x => x.Comment.Contains(value)).ToList();
                             break;
                     }
                 }
