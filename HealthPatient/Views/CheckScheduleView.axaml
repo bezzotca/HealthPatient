@@ -26,42 +26,11 @@ FontSize="32"
 								<StackPanel Spacing="10">
 									<StackPanel Orientation="Horizontal"
 												Spacing="2">
-										<TextBlock Text="{Binding Doctor.LastName, StringFormat= ФИО врача : {0}}"
-												   	    FontFamily="Times New Roman"
-FontWeight="Bold"
-FontSize="17"
-	    Foreground="White"/>
-										<TextBlock Text="{Binding Doctor.FirstName}"
-												   	    FontFamily="Times New Roman"
-FontWeight="Bold"
-FontSize="17"
-	    Foreground="White"/>
-										<TextBlock Text="{Binding Doctor.Patronymic}"
-												   	    FontFamily="Times New Roman"
-FontWeight="Bold"
-FontSize="17"
-	    Foreground="White"/>
+										
+										
 									</StackPanel>
-									<TextBlock Text="{Binding DatestartSchedule, StringFormat= Начало расписания : {0}}"
-											   	    FontFamily="Times New Roman"
-FontWeight="Bold"
-FontSize="17"
-	    Foreground="White"/>
-									<TextBlock Text="{Binding DateendSchedule, StringFormat= Начало расписания : {0}}"
-											   	    FontFamily="Times New Roman"
-FontWeight="Bold"
-FontSize="17"
-	    Foreground="White"/>
-									<TextBlock Text="{Binding StartTime, StringFormat= Начало рабочего времени : {0}}"
-											   	    FontFamily="Times New Roman"
-FontWeight="Bold"
-FontSize="17"
-	    Foreground="White"/>
-									<TextBlock Text="{Binding EndTime, StringFormat= Конец рабочего времени : {0}}"
-											   	    FontFamily="Times New Roman"
-FontWeight="Bold"
-FontSize="17"
-	    Foreground="White"/>
+									
+									
 								</StackPanel>
 							</DataTemplate>
 						</ItemsControl.ItemTemplate>

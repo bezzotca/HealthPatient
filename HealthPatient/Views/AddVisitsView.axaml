@@ -39,12 +39,12 @@
 										    FontFamily="Times New Roman"
 					   FontWeight="Bold"
 					   FontSize="17"
-						    Foreground="White"/>
+						    Foreground="Black"/>
 								<TextBlock Text="{Binding Patronymic}"
 										    FontFamily="Times New Roman"
 					   FontWeight="Bold"
 					   FontSize="17"
-						    Foreground="White"/>
+						    Foreground="Black"/>
 							</StackPanel>
 						</DataTemplate>
 					</ComboBox.ItemTemplate>
@@ -57,7 +57,9 @@
 					   FontWeight="Bold"
 					   FontSize="17"
 						    Foreground="White"/>
-				<DatePicker SelectedDate="{Binding DateTimeOffset}"/>
+				<DatePicker SelectedDate="{Binding DateTimeOffset}"
+							Background="White"
+							Foreground="Black"/>
 			</StackPanel>
 			<StackPanel Orientation="Horizontal">
 				<TextBlock Text="Выберите время"
@@ -65,27 +67,21 @@
 					   FontWeight="Bold"
 					   FontSize="17"
 						    Foreground="White"/>
-				<TimePicker SelectedTime="{Binding TimeSpan}"/>
+				<TimePicker SelectedTime="{Binding TimeSpan}"
+							Background="White"
+						Foreground="Black"/>
 			</StackPanel>
 			<StackPanel IsVisible="{Binding TimeSpan}"
 						Spacing="10">
-				<TextBlock Text="{Binding Schedule.StartTime, StringFormat= Начало рабочего дня : {0}}"
-						    FontFamily="Times New Roman"
-					   FontWeight="Bold"
-					   FontSize="17"
-						    Foreground="White"/>
-				<TextBlock Text="{Binding Schedule.EndTime, StringFormat= Конец рабочего дня: {0}}"
-						    FontFamily="Times New Roman"
-					   FontWeight="Bold"
-					   FontSize="17"
-						    Foreground="White"/>
+				
 				<StackPanel Orientation="Horizontal">
 					<TextBlock Text="Выберите услугу"
 							    FontFamily="Times New Roman"
 					   FontWeight="Bold"
 					   FontSize="17"
 						    Foreground="White"/>
-					<ComboBox ItemsSource="{Binding Services}" SelectedItem="{Binding ServicePrice}">
+					<ComboBox ItemsSource="{Binding Services}" SelectedItem="{Binding ServicePrice}"
+							  Background="White">
 						<ComboBox.ItemTemplate>
 							<DataTemplate>
 								<StackPanel>
@@ -93,7 +89,7 @@
 											    FontFamily="Times New Roman"
 					   FontWeight="Bold"
 					   FontSize="17"
-						    Foreground="White"/>
+						    Foreground="Black"/>
 								</StackPanel>
 							</DataTemplate>
 						</ComboBox.ItemTemplate>

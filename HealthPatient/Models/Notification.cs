@@ -17,8 +17,6 @@ public partial class Notification
 
     public string? Status { get; set; }
 
-    public bool IsVis  => ConverterToBitmapImage.IsVis(Status);
-
     public DateTime? CreatedAt { get; set; }
 
     public virtual Doctor? Doctor { get; set; }

@@ -13,11 +13,7 @@ public partial class LoyaltyPointsHistory
 
     public string? Reason { get; set; }
 
-    public int? VisitId { get; set; }
-
     public DateTime? CreatedAt { get; set; }
 
     public virtual Patient? Patient { get; set; }
-
-    public virtual Visit? Visit { get; set; }
 }

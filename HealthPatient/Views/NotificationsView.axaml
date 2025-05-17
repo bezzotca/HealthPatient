@@ -131,7 +131,7 @@ Background="#03B3BC"
 													Command="{Binding $parent[UserControl]((vm:NotificationsViewModel)DataContext).Save}"
 											HorizontalAlignment="Center"/>
 									<StackPanel 
-										IsVisible="{Binding IsVis}">
+										>
 										<Button Content="Прочитать"
 													HorizontalContentAlignment="Center"
 													Foreground="White"

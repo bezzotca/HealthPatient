@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿    <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
@@ -10,16 +10,19 @@
 
   <ItemGroup>
     <AvaloniaResource Include="Assets\**" />
+    <Folder Include="Assets\Export\Export_Doctors\" />
+    <Folder Include="Assets\Export\Export_Patients\" />
+    <Folder Include="Assets\Import\Import_Patients\" />
+    <Folder Include="Assets\Import\Import_Doctors\" />
+    <Folder Include="Assets\Import\Import_Schedule\" />
     <Folder Include="Assets\Media\Patients_media\" />
     <Folder Include="Assets\Reports\" />
-    <Folder Include="Assets\Reports\Пациент_Петрова\" />
     <None Remove="Assets\logo.ico" />
     <None Remove="Assets\logo.png" />
     <Folder Include="Assets\Media\Achievements_media\" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="11.1.0" />
     <PackageReference Include="Avalonia.Desktop" Version="11.1.0" />
     <PackageReference Include="Avalonia.Themes.Fluent" Version="11.1.0" />
     <PackageReference Include="Avalonia.Fonts.Inter" Version="11.1.0" />
@@ -28,8 +31,13 @@
     <PackageReference Include="Avalonia.Xaml.Behaviors" Version="11.0.5" />
     <PackageReference Include="Avalonia.Xaml.Interactions" Version="11.0.5" />
     <PackageReference Include="Avalonia.Xaml.Interactions.Draggable" Version="11.1.0.5" />
+    <PackageReference Include="ClosedXML" Version="0.105.0" />
+    <PackageReference Include="ClosedXML.Parser" Version="2.0.0" />
+    <PackageReference Include="ClosedXML.Report" Version="0.2.11" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
     <PackageReference Include="itext7" Version="9.1.0" />
+    <PackageReference Include="LiveCharts.Core" Version="0.9.8" />
+    <PackageReference Include="LiveChartsCore.SkiaSharpView.Avalonia" Version="2.0.0-rc5.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -39,6 +47,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.2" />
+    <PackageReference Include="OxyPlot.Avalonia" Version="2.1.0" />
     <PackageReference Include="QuestPDF" Version="2025.1.6" />
   </ItemGroup>
 	

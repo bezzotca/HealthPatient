@@ -24,12 +24,12 @@ namespace HealthPatient.ViewModels
             patient = MainWindowViewModel.Instance.Patient;
             if(patient != null)
             {
-                loyalty = Db.LoyaltyPointsHistories.Include(x => x.Visit).Include(x => x.Patient).Where(x => x.PatientId == patient.PatientId).ToList();
-                loyalty0 = Db.LoyaltyPointsHistories.Include(x => x.Visit).Include(x => x.Patient).Where(x => x.PatientId == patient.PatientId).ToList();
+                loyalty = Db.LoyaltyPointsHistories.Include(x => x.Patient).Where(x => x.PatientId == patient.PatientId).ToList();
+                loyalty0 = Db.LoyaltyPointsHistories.Include(x => x.Patient).Where(x => x.PatientId == patient.PatientId).ToList();
             }
             else if(patient == null && MainWindowViewModel.Instance.Doctor == null)
             {
-                loyalty = Db.LoyaltyPointsHistories.Include(x => x.Visit).Include(x => x.Patient).ToList();
+                loyalty = Db.LoyaltyPointsHistories.Include(x => x.Patient).ToList();
             }
             filter = new List<string>
             {

@@ -19,6 +19,8 @@ public partial class HealthpatientContext : DbContext
 
     public virtual DbSet<Administrator> Administrators { get; set; }
 
+    public virtual DbSet<AnalyzedDatum> AnalyzedData { get; set; }
+
     public virtual DbSet<Doctor> Doctors { get; set; }
 
     public virtual DbSet<DoctorAchievement> DoctorAchievements { get; set; }
@@ -27,17 +29,23 @@ public partial class HealthpatientContext : DbContext
 
     public virtual DbSet<Gender> Genders { get; set; }
 
+    public virtual DbSet<ItemsInShop> ItemsInShops { get; set; }
+
     public virtual DbSet<LoyaltyPointsHistory> LoyaltyPointsHistories { get; set; }
 
     public virtual DbSet<News> News { get; set; }
 
     public virtual DbSet<Notification> Notifications { get; set; }
 
+    public virtual DbSet<Order> Orders { get; set; }
+
     public virtual DbSet<Patient> Patients { get; set; }
 
     public virtual DbSet<Review> Reviews { get; set; }
 
     public virtual DbSet<Schedule> Schedules { get; set; }
+
+    public virtual DbSet<SchedulesDoctor> SchedulesDoctors { get; set; }
 
     public virtual DbSet<Service> Services { get; set; }
 
@@ -114,6 +122,33 @@ public partial class HealthpatientContext : DbContext
                 .HasConstraintName("administrators_genders_fk");
         });
 
+        modelBuilder.Entity<AnalyzedDatum>(entity =>
+        {
+            entity.HasKey(e => e.IdData).HasName("analyzed_data_pk");
+
+            entity.ToTable("analyzed_data");
+
+            entity.Property(e => e.IdData)
+                .UseIdentityAlwaysColumn()
+                .HasColumnName("id_data");
+            entity.Property(e => e.Averagerating)
+                .HasPrecision(10, 2)
+                .HasColumnName("averagerating");
+            entity.Property(e => e.Countbadrating).HasColumnName("countbadrating");
+            entity.Property(e => e.Countgoodrating).HasColumnName("countgoodrating");
+            entity.Property(e => e.HoursInWork).HasColumnName("hours_in_work");
+            entity.Property(e => e.IdDoctor).HasColumnName("id_doctor");
+            entity.Property(e => e.MoneyCounted)
+                .HasPrecision(10, 2)
+                .HasColumnName("money_counted");
+            entity.Property(e => e.PatientsCounted).HasColumnName("patients_counted");
+
+            entity.HasOne(d => d.IdDoctorNavigation).WithMany(p => p.AnalyzedData)
+                .HasForeignKey(d => d.IdDoctor)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("analyzed_data_doctors_fk");
+        });
+
         modelBuilder.Entity<Doctor>(entity =>
         {
             entity.HasKey(e => e.DoctorId).HasName("doctors_pkey");
@@ -133,6 +168,9 @@ public partial class HealthpatientContext : DbContext
             entity.Property(e => e.Image)
                 .HasMaxLength(100)
                 .HasColumnName("image");
+            entity.Property(e => e.IsAnalyzed)
+                .HasDefaultValue(false)
+                .HasColumnName("is_analyzed");
             entity.Property(e => e.LastName)
                 .HasMaxLength(50)
                 .HasColumnName("last_name");
@@ -165,6 +203,7 @@ public partial class HealthpatientContext : DbContext
             entity.Property(e => e.AchievementId).HasColumnName("achievement_id");
             entity.Property(e => e.DateAchieved).HasColumnName("date_achieved");
             entity.Property(e => e.DoctorId).HasColumnName("doctor_id");
+            entity.Property(e => e.Isachieved).HasColumnName("isachieved");
 
             entity.HasOne(d => d.Achievement).WithMany()
                 .HasForeignKey(d => d.AchievementId)
@@ -215,6 +254,29 @@ public partial class HealthpatientContext : DbContext
                 .HasColumnName("name_gender");
         });
 
+        modelBuilder.Entity<ItemsInShop>(entity =>
+        {
+            entity.HasKey(e => e.IdItem).HasName("items_in_shop_pk");
+
+            entity.ToTable("items_in_shop");
+
+            entity.Property(e => e.IdItem)
+                .UseIdentityAlwaysColumn()
+                .HasColumnName("id_item");
+            entity.Property(e => e.Cost).HasColumnName("cost");
+            entity.Property(e => e.CountInStock).HasColumnName("count_in_stock");
+            entity.Property(e => e.Description)
+                .HasColumnType("character varying")
+                .HasColumnName("description");
+            entity.Property(e => e.Discount).HasColumnName("discount");
+            entity.Property(e => e.Image)
+                .HasColumnType("character varying")
+                .HasColumnName("image");
+            entity.Property(e => e.Name)
+                .HasColumnType("character varying")
+                .HasColumnName("name");
+        });
+
         modelBuilder.Entity<LoyaltyPointsHistory>(entity =>
         {
             entity.HasKey(e => e.LoyaltyHistoryId).HasName("loyalty_points_history_pkey");
@@ -231,17 +293,11 @@ public partial class HealthpatientContext : DbContext
             entity.Property(e => e.Reason)
                 .HasMaxLength(255)
                 .HasColumnName("reason");
-            entity.Property(e => e.VisitId).HasColumnName("visit_id");
 
             entity.HasOne(d => d.Patient).WithMany(p => p.LoyaltyPointsHistories)
                 .HasForeignKey(d => d.PatientId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("loyalty_points_history_patient_id_fkey");
-
-            entity.HasOne(d => d.Visit).WithMany(p => p.LoyaltyPointsHistories)
-                .HasForeignKey(d => d.VisitId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("loyalty_points_history_visit_id_fkey");
         });
 
         modelBuilder.Entity<News>(entity =>
@@ -293,6 +349,28 @@ public partial class HealthpatientContext : DbContext
                 .HasConstraintName("notifications_patient_id_fkey");
         });
 
+        modelBuilder.Entity<Order>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToTable("orders");
+
+            entity.Property(e => e.DoctorId).HasColumnName("doctor_id");
+            entity.Property(e => e.ItemId).HasColumnName("item_id");
+            entity.Property(e => e.OrderId)
+                .ValueGeneratedOnAdd()
+                .UseIdentityAlwaysColumn()
+                .HasColumnName("order_id");
+
+            entity.HasOne(d => d.Doctor).WithMany()
+                .HasForeignKey(d => d.DoctorId)
+                .HasConstraintName("orders_doctors_fk");
+
+            entity.HasOne(d => d.Item).WithMany()
+                .HasForeignKey(d => d.ItemId)
+                .HasConstraintName("orders_items_in_shop_fk");
+        });
+
         modelBuilder.Entity<Patient>(entity =>
         {
             entity.HasKey(e => e.PatientId).HasName("patients_pkey");
@@ -304,10 +382,14 @@ public partial class HealthpatientContext : DbContext
             entity.Property(e => e.ContactPhone)
                 .HasMaxLength(20)
                 .HasColumnName("contact_phone");
+            entity.Property(e => e.Countloyaltypoints).HasColumnName("countloyaltypoints");
             entity.Property(e => e.CreatedAt)
                 .HasDefaultValueSql("now()")
                 .HasColumnType("timestamp without time zone")
                 .HasColumnName("created_at");
+            entity.Property(e => e.Discount)
+                .HasDefaultValue(false)
+                .HasColumnName("discount");
             entity.Property(e => e.Email)
                 .HasMaxLength(255)
                 .HasColumnName("email");
@@ -318,6 +400,9 @@ public partial class HealthpatientContext : DbContext
             entity.Property(e => e.Image)
                 .HasMaxLength(100)
                 .HasColumnName("image");
+            entity.Property(e => e.Isanalyzed)
+                .HasDefaultValue(false)
+                .HasColumnName("isanalyzed");
             entity.Property(e => e.LastName)
                 .HasMaxLength(50)
                 .HasColumnName("last_name");
@@ -334,6 +419,9 @@ public partial class HealthpatientContext : DbContext
             entity.Property(e => e.Patronymic)
                 .HasMaxLength(50)
                 .HasColumnName("patronymic");
+            entity.Property(e => e.PercentsDiscount)
+                .HasDefaultValue(0)
+                .HasColumnName("percents_discount");
             entity.Property(e => e.UpdatedAt)
                 .HasDefaultValueSql("now()")
                 .HasColumnType("timestamp without time zone")
@@ -379,16 +467,36 @@ public partial class HealthpatientContext : DbContext
             entity.ToTable("schedules");
 
             entity.Property(e => e.ScheduleId).HasColumnName("schedule_id");
-            entity.Property(e => e.DateendSchedule).HasColumnName("dateend_schedule");
-            entity.Property(e => e.DatestartSchedule).HasColumnName("datestart_schedule");
+            entity.Property(e => e.DatestartSchedule)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("datestart_schedule");
             entity.Property(e => e.DoctorId).HasColumnName("doctor_id");
-            entity.Property(e => e.EndTime).HasColumnName("end_time");
-            entity.Property(e => e.StartTime).HasColumnName("start_time");
+            entity.Property(e => e.IsBusy)
+                .HasDefaultValue(false)
+                .HasColumnName("is_busy");
+            entity.Property(e => e.Lengthinmins).HasColumnName("lengthinmins");
+        });
 
-            entity.HasOne(d => d.Doctor).WithMany(p => p.Schedules)
+        modelBuilder.Entity<SchedulesDoctor>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToTable("schedules_doctors");
+
+            entity.Property(e => e.DocSchedId)
+                .ValueGeneratedOnAdd()
+                .UseIdentityAlwaysColumn()
+                .HasColumnName("doc_sched_id");
+            entity.Property(e => e.DoctorId).HasColumnName("doctor_id");
+            entity.Property(e => e.ScheduleId).HasColumnName("schedule_id");
+
+            entity.HasOne(d => d.Doctor).WithMany()
                 .HasForeignKey(d => d.DoctorId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("schedules_doctor_id_fkey");
+                .HasConstraintName("schedules_doctors_doctors_fk");
+
+            entity.HasOne(d => d.Schedule).WithMany()
+                .HasForeignKey(d => d.ScheduleId)
+                .HasConstraintName("schedules_doctors_schedules_fk");
         });
 
         modelBuilder.Entity<Service>(entity =>
@@ -493,6 +601,12 @@ public partial class HealthpatientContext : DbContext
                 .HasColumnName("created_at");
             entity.Property(e => e.Diagnosis).HasColumnName("diagnosis");
             entity.Property(e => e.DoctorId).HasColumnName("doctor_id");
+            entity.Property(e => e.IsAnalyzed)
+                .HasDefaultValue(false)
+                .HasColumnName("is_analyzed");
+            entity.Property(e => e.IsConfirmed)
+                .HasDefaultValue(false)
+                .HasColumnName("is_confirmed");
             entity.Property(e => e.PatientId).HasColumnName("patient_id");
             entity.Property(e => e.Prescriptions).HasColumnName("prescriptions");
             entity.Property(e => e.ScheduleId).HasColumnName("schedule_id");

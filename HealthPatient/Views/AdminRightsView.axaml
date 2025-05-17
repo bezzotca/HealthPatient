@@ -58,6 +58,49 @@
 													Foreground="White"
 													Background="#03B3BC"/>
 			</StackPanel>
+			<StackPanel Orientation="Horizontal"
+						Spacing="5">
+				<Button Content="Импорт пациентов"
+						HorizontalAlignment="Center"
+						Command="{Binding ImportPatientsFromExcelAsync}"
+						HorizontalContentAlignment="Center"
+													Foreground="White"
+													Background="#03B3BC"/>
+				<Button Content="Импорт Врачей"
+							HorizontalAlignment="Center"
+							Command="{Binding ImportDoctorsFromExcelAsync}"
+							HorizontalContentAlignment="Center"
+														Foreground="White"
+														Background="#03B3BC"/>
+				<Button Content="Импорт слотов расписания"
+							HorizontalAlignment="Center"
+							Command="{Binding ImportDoctorSchedulesFromExcelAsync}"
+							HorizontalContentAlignment="Center"
+														Foreground="White"
+														Background="#03B3BC"/>
+			</StackPanel>
+			<StackPanel Orientation="Horizontal"
+						Spacing="5">
+				<Button Content="Экспорт пациентов"
+						HorizontalAlignment="Center"
+						Command="{Binding ExportPatientsToExcelAsync}"
+						HorizontalContentAlignment="Center"
+													Foreground="White"
+													Background="#03B3BC"/>
+				<Button Content="Экспорт Врачей"
+							HorizontalAlignment="Center"
+							Command="{Binding ExportDoctorsToExcelAsync}"
+							HorizontalContentAlignment="Center"
+														Foreground="White"
+														Background="#03B3BC"/>
+				<Button Content="Статистика"
+							HorizontalAlignment="Center"
+							Command="{Binding GoToDiagrams}"
+							HorizontalContentAlignment="Center"
+														Foreground="White"
+														Background="#03B3BC"/>
+			</StackPanel>
+
 		</StackPanel>
 	</StackPanel>
 </UserControl>

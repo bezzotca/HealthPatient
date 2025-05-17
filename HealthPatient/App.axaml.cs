@@ -5,7 +5,7 @@ using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
 using HealthPatient.ViewModels;
 using HealthPatient.Views;
-
+using LiveChartsCore.SkiaSharpView.Avalonia;
 namespace HealthPatient
 {
     public partial class App : Application

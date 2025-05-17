@@ -17,7 +17,7 @@ namespace HealthPatient.ViewModels
 
         public PatientWorkViewModel()
         {
-            schedule = Db.Schedules.Include(x => x.Doctor).ToList();
+            schedule = Db.Schedules.ToList();
             news = Db.News.ToList();
         }
         public void CheckVisits()

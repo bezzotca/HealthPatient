@@ -12,6 +12,7 @@ public partial class Patient
 
     public string? LastName { get; set; }
 
+    public Bitmap Photo => ConverterToBitmapImage.ConvertToPatient(Image, GenderId);
     public string? Patronymic { get; set; }
 
     public DateOnly? BirthDate { get; set; }
@@ -35,7 +36,15 @@ public partial class Patient
     public int? GenderId { get; set; }
 
     public string? Image { get; set; }
-    public Bitmap Photo => ConverterToBitmapImage.ConvertToPatient(Image, GenderId);
+
+    public bool? Discount { get; set; }
+
+    public int? PercentsDiscount { get; set; }
+
+    public int? Countloyaltypoints { get; set; }
+
+    public bool? Isanalyzed { get; set; }
+
     public virtual Gender? Gender { get; set; }
 
     public virtual ICollection<LoyaltyPointsHistory> LoyaltyPointsHistories { get; set; } = new List<LoyaltyPointsHistory>();

@@ -19,8 +19,8 @@ namespace HealthPatient.ViewModels
 
         public DoctorsMainViewModel()
         {
-            doctors = Db.Doctors.Include(x => x.Notifications).Include(x => x.Reviews).Include(x => x.Schedules).Include(x => x.ServicePrices).Include(x => x.Visits).ToList();
-            doctors0 = Db.Doctors.Include(x => x.Notifications).Include(x => x.Reviews).Include(x => x.Schedules).Include(x => x.ServicePrices).Include(x => x.Visits).ToList();
+            doctors = Db.Doctors.Include(x => x.Notifications).Include(x => x.Reviews).Include(x => x.ServicePrices).Include(x => x.Visits).ToList();
+            doctors0 = Db.Doctors.Include(x => x.Notifications).Include(x => x.Reviews).Include(x => x.ServicePrices).Include(x => x.Visits).ToList();
             filter = new List<string>
             {
                 "Без фильтра",

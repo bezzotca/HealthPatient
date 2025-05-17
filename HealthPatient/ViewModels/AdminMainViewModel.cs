@@ -9,7 +9,7 @@ namespace HealthPatient.ViewModels
 {
     public partial class AdminMainViewModel: ViewModelBase
     {
-        [ObservableProperty] ViewModelBase pageSwitcher;
+        [ObservableProperty] ViewModelBase pageSwitcher = new AdminRightsViewModel();
         public static AdminMainViewModel Instance { get; set; }
 
         public AdminMainViewModel()
@@ -74,6 +74,10 @@ namespace HealthPatient.ViewModels
                     pageSwitcher = new PatientsMainViewModel();
                 }
                 else if (MainWindowViewModel.Instance.PageSwitcherAdminPanel.GetType().Name == "AdminRightsViewModel")
+                {
+                    pageSwitcher = new AdminRightsViewModel();
+                }
+                else
                 {
                     pageSwitcher = new AdminRightsViewModel();
                 }

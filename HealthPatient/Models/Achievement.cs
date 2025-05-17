@@ -11,7 +11,7 @@ public partial class Achievement
 
     public string? Description { get; set; }
 
-    public string? Criteria { get; set; }
+    public int? Criteria { get; set; }
 
     public string? BadgeImage { get; set; }
 }

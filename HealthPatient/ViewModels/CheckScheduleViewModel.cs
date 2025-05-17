@@ -17,7 +17,7 @@ namespace HealthPatient.ViewModels
         public CheckScheduleViewModel()
         {
             doctor = MainWindowViewModel.Instance.Doctor;
-            schedule = Db.Schedules.Include(x=>x.Doctor).Where(x => x.DoctorId == doctor.DoctorId).ToList();
+            schedule = Db.Schedules.Where(x => x.DoctorId == doctor.DoctorId).ToList();
         }
     }
 }

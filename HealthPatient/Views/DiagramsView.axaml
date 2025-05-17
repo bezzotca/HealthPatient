@@ -1,0 +1,45 @@
+ <UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:vm="using:HealthPatient.ViewModels"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:oxy="clr-namespace:OxyPlot.Avalonia;assembly=OxyPlot.Avalonia"	
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="HealthPatient.Views.DiagramsView"
+			 x:DataType="vm:DiagramsViewModel"
+			 Background="#016D8A">
+	 <StackPanel>
+		 <StackPanel>
+			 <Button Content="Назад"
+							   HorizontalAlignment="Center"
+							   Command="{Binding GoBack}"
+							   HorizontalContentAlignment="Center"
+														   Foreground="White"
+														   Background="#03B3BC"/>
+		 </StackPanel>
+			 <TextBlock Text="Топ 3 человека по количеству прибыли" FontWeight="Bold"
+						Foreground="White"/>
+			 <ListBox ItemsSource="{Binding TopMoneyCounted}"/>
+
+			 <TextBlock Text="Топ 3 человека по принятым пациентам" FontWeight="Bold"
+						Foreground="White"/>
+			 <ListBox ItemsSource="{Binding TopPatientsCounted}"/>
+
+			 <TextBlock Text="Топ 3 человека по отработанным часам" FontWeight="Bold"
+						Foreground="White"/>
+			 <ListBox ItemsSource="{Binding TopHoursInWork}"/>
+
+			 <TextBlock Text="Топ 3 человека по среднему рейтингу" FontWeight="Bold"
+						Foreground="White"/>
+			 <ListBox ItemsSource="{Binding TopAverageRating}"/>
+
+			 <TextBlock Text="Топ 3 человека по количеству оставленных плохих отзывов" FontWeight="Bold"
+						Foreground="White"/>
+			 <ListBox ItemsSource="{Binding TopCountBadRating}"/>
+
+			 <TextBlock Text="Топ 3 человека по количеству оставленных хороших отзывов" FontWeight="Bold"
+						Foreground="White"/>
+			 <ListBox ItemsSource="{Binding TopCountGoodRating}"/>
+
+	 </StackPanel>
+</UserControl>

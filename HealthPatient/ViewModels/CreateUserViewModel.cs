@@ -170,9 +170,12 @@ namespace HealthPatient.ViewModels
                 Message = "Не удалось получить главное окно.";
             }
         }
-        bool IsPasswordValid()
+        public bool IsPasswordValid(string Password)
         {
-
+            if (Password == null)
+            {
+                return false;
+            }
             if (Password.Length < 6)
                 return false;
 
@@ -192,7 +195,7 @@ namespace HealthPatient.ViewModels
             return hasUpperCase && hasLowerCase && hasDigit && hasSpecialChar;
         }
 
-        bool IsEmailValid()
+        public bool IsEmailValid()
         {
             string emailPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
 
@@ -209,7 +212,7 @@ namespace HealthPatient.ViewModels
                         && LastName != "" && Patronymic != null && Patronymic != "" && Bio != null && Bio != ""
                         && Login != null && Login != "" && Password != null && Password != "" && SelectedGender != null)
                     {
-                        if (!IsPasswordValid())
+                        if (!IsPasswordValid(Password))
                         {
                             Message = "Введите надёжный пароль";
                         }
@@ -247,7 +250,7 @@ namespace HealthPatient.ViewModels
                         && Login != null && Login != "" && Password != null && Password != ""
                         && Email != null && Email != "" && ContactPhone != null && ContactPhone != "" && SelectedGender != null)
                     {
-                        if (!IsPasswordValid())
+                        if (!IsPasswordValid(Password))
                         {
                             Message = "Введите надёжный пароль";
                         }

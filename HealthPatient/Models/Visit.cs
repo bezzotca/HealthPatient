@@ -27,9 +27,11 @@ public partial class Visit
 
     public DateTime? UpdatedAt { get; set; }
 
-    public virtual Doctor? Doctor { get; set; }
+    public bool? IsAnalyzed { get; set; }
 
-    public virtual ICollection<LoyaltyPointsHistory> LoyaltyPointsHistories { get; set; } = new List<LoyaltyPointsHistory>();
+    public bool? IsConfirmed { get; set; }
+
+    public virtual Doctor? Doctor { get; set; }
 
     public virtual Patient? Patient { get; set; }
 

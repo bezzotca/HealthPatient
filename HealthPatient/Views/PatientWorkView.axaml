@@ -21,13 +21,6 @@
 												CommandParameter="{Binding}"
 														Command="{Binding CheckVisits}"
 												HorizontalAlignment="Center"/>
-					<Button Content="Отзывы"
-															HorizontalContentAlignment="Center"
-															Foreground="White"
-							Background="#03B3BC"
-													CommandParameter="{Binding}"
-															Command="{Binding CheckReviews}"
-													HorizontalAlignment="Center"/>
 					<Button Content="Назад"
 															HorizontalContentAlignment="Center"
 															Foreground="White"
@@ -79,42 +72,9 @@ FontSize="17"
 								<StackPanel Spacing="10">
 								<StackPanel Orientation="Horizontal"
 											Spacing="2">
-									<TextBlock Text="{Binding Doctor.LastName, StringFormat= ФИО врача : {0}}"
-													FontFamily="Times New Roman"
-FontWeight="Bold"
-FontSize="17"
-	Foreground="Black"/>
-									<TextBlock Text="{Binding Doctor.FirstName}"
-													FontFamily="Times New Roman"
-FontWeight="Bold"
-FontSize="17"
-	Foreground="Black"/>
-									<TextBlock Text="{Binding Doctor.Patronymic}"
-													FontFamily="Times New Roman"
-FontWeight="Bold"
-FontSize="17"
-	Foreground="Black"/>
+									
 								</StackPanel>
-								<TextBlock Text="{Binding DatestartSchedule, StringFormat= Начало расписания : {0}}"
-												FontFamily="Times New Roman"
-FontWeight="Bold"
-FontSize="17"
-	Foreground="Black"/>
-								<TextBlock Text="{Binding DateendSchedule, StringFormat= Начало расписания : {0}}"
-												FontFamily="Times New Roman"
-FontWeight="Bold"
-FontSize="17"
-	Foreground="Black"/>
-								<TextBlock Text="{Binding StartTime, StringFormat= Начало рабочего времени : {0}}"
-												FontFamily="Times New Roman"
-FontWeight="Bold"
-FontSize="17"
-	Foreground="Black"/>
-								<TextBlock Text="{Binding EndTime, StringFormat= Конец рабочего времени : {0}}"
-												FontFamily="Times New Roman"
-FontWeight="Bold"
-FontSize="17"
-	Foreground="Black"/>
+								
 							</StackPanel>
 							</Border>
 						</DataTemplate>
